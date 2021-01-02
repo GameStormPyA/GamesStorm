@@ -1,0 +1,60 @@
+
+<div class="row">
+    <div class="col-4 text-left">
+        <button class="ml-2" mat-raised-button [routerLink]="['/Home']"  color="warn">Volver</button >
+    </div>
+    <div class="col-4 text-center">
+        <h2>Listado de Accesorios</h2>
+    </div>
+    <div class="col-4 text-right ">Añadir Accesorio
+        <a mat-icon-button [routerLink]="['/Accesorios/Agregar']">
+                 <mat-icon color="primary">add_box</mat-icon>
+        </a>
+    </div>
+</div>
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="listaAccesorios" class="mat-elevation-z8" style="width:100%;">
+    <ng-container matColumnDef="Nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let Accesorios"> {{Accesorios.Nombre}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Descripcion">
+      <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+      <td mat-cell *matCellDef="let Accesorios">{{Accesorios.Descripcion}}</td>
+  </ng-container>
+  <ng-container matColumnDef="Edicion">
+    <th mat-header-cell *matHeaderCellDef>Edicion</th>
+    <td mat-cell *matCellDef="let Accesorios"> {{Accesorios.Edicion}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Stock">
+        <th mat-header-cell *matHeaderCellDef>Stock</th>
+        <td mat-cell *matCellDef="let Accesorios"> {{Accesorios.Stock}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Precio">
+        <th mat-header-cell *matHeaderCellDef>Precio</th>
+        <td mat-cell *matCellDef="let Accesorios"> {{Accesorios.Precio}} </td>
+    </ng-container>
+    <!--Editar Acesorios-->
+    <ng-container matColumnDef="Editar">
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
+        <td mat-cell *matCellDef="let Accesorios">
+            <a mat-icon-button [routerLink]="['/Accesorios/Editar',Accesorios.Id_Accesorios,Accesorios.Id_Plataforma]">
+                <mat-icon color="primary">edit</mat-icon>
+            </a>
+        </td>
+    </ng-container>
+    <!--Eliminar Acesorios-->
+    <ng-container matColumnDef="Eliminar">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let Accesorios" >
+            <button (click)="eliminarAccesorios(Accesorios)" mat-icon-button>
+                <mat-icon color="warn">delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columndefs"></tr>
+    <tr mat-row *matRowDef="let Accesorios; columns: columndefs;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+</div>

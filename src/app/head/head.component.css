@@ -1,0 +1,23 @@
+.material-icons{
+    font-size: 50px;
+    width: 50px;
+}
+.IconosPerfile{
+    width: 30%;
+    height: 100%;
+}
+.IconosPerfileCarrito{
+    margin-top: 12px;
+    width: 30%;
+    height: 70%;
+}
+.TextoMenuPerfile{
+    justify-content: center;
+}
+.DivProfile{
+    width: 100%;
+    height: 100%;
+}
+button{
+    outline:none;
+}
