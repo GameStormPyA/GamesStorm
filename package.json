@@ -21,13 +21,11 @@
     "@angular/platform-browser": "~9.0.1",
     "@angular/platform-browser-dynamic": "~9.0.1",
     "@angular/router": "~9.0.1",
+    "@ngmodule/material-carousel": "^0.6.0",
     "@popperjs/core": "^2.6.0",
     "bootstrap": "^4.5.3",
     "jquery": "^3.5.1",
-<<<<<<< HEAD
     "mat-select-filter": "^2.3.7",
-=======
->>>>>>> 63e53913f08ff2adddeec15f9ae52605ffe2913d
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

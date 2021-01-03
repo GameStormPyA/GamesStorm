@@ -10,9 +10,6 @@ import { HeadComponent } from './head/head.component';
 import { InsertAccesoriosComponent } from './body/insert-accesorios/insert-accesorios.component';
 import { ListAccesoriosComponent } from './body/list-accesorios/list-accesorios.component';
 //clases
-import { Accesorios } from './accesorios';
-import { Categoria } from './categoria';
-//servicios
 import { AccesoriosService} from './servicios/accesorios.service';
 import { CategoriaService} from './servicios/categoria.service';
 import { PujaService} from './servicios/puja.service';
@@ -30,6 +27,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectFilterModule } from 'mat-select-filter';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule} from '@angular/material/badge';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { MatCardModule} from '@angular/material/card';
+
 //form
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -45,6 +45,15 @@ import { InsertSubastaComponent } from './body/insert-subasta/insert-subasta.com
 import { EditPujaComponent } from './body/edit-puja/edit-puja.component';
 import { ListPujaComponent } from './body/list-puja/list-puja.component';
 import { HomeComponent } from './body/home/home.component';
+import { ProductosComponent } from './central/productos/productos.component';
+import { LoginComponent } from './session/login/login.component';
+import { RegisterComponent } from './session/register/register.component';
+import { CarritoComponent } from './carrito/carrito/carrito.component';
+import { FiltroComponent } from './filtro/filtro/filtro.component';
+import { SubastaComponent } from './subasta/subasta/subasta.component';
+import { UserComponent } from './config/user/user.component';
+import { NoticiaComponent } from './news/noticia/noticia.component';
+import { AboutComponent } from './about/about/about.component';
 
 
 @NgModule({
@@ -64,6 +73,15 @@ import { HomeComponent } from './body/home/home.component';
     EditPujaComponent,
     ListPujaComponent,
     HomeComponent,
+    ProductosComponent,
+    LoginComponent,
+    RegisterComponent,
+    CarritoComponent,
+    FiltroComponent,
+    SubastaComponent,
+    UserComponent,
+    NoticiaComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,7 +103,9 @@ import { HomeComponent } from './body/home/home.component';
     MatAutocompleteModule,
     MatSelectFilterModule,
     MatMenuModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatCarouselModule.forRoot(),
+    MatCardModule
   ],
   providers: [
     AccesoriosService,
