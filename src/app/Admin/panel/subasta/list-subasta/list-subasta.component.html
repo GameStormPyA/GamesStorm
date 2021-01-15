@@ -1,0 +1,73 @@
+<div class="row mt-2">
+    <div class="col-4 text-left">
+        <button class="ml-2" mat-raised-button [routerLink]="['/Panel']"  color="warn">Volver al Panel</button >
+    </div>
+    <div class="col-4 text-center">
+        <h2>Listado de Subasta</h2>
+    </div>
+    <div class="col-4 text-right ">Añadir Subasta
+        <a mat-icon-button [routerLink]="['/Panel/Subasta/Agregar']">
+            <mat-icon color="primary">add_box</mat-icon>
+   </a>
+    </div>
+</div>
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="listaSubasta" class="mat-elevation-z8 col-12" style="width:100%;">
+    <ng-container matColumnDef="Juego">
+        <th mat-header-cell *matHeaderCellDef>Juego</th>
+        <td mat-cell *matCellDef="let Subasta"> {{Subasta.Nombre_Juego}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Plataforma">
+      <th mat-header-cell *matHeaderCellDef>Plataforma</th>
+      <td mat-cell *matCellDef="let Subasta">{{Subasta.Nombre_Plataforma}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Precio Max">
+        <th mat-header-cell *matHeaderCellDef>Precio Max</th>
+        <td mat-cell *matCellDef="let Subasta">{{Subasta.PrecioMin}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Comprador">
+        <th mat-header-cell *matHeaderCellDef>Comprador</th>
+        <td mat-cell *matCellDef="let Subasta"> {{Subasta.Comprador}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Fecha Inicio">
+        <th mat-header-cell *matHeaderCellDef>Fecha Inicio</th>
+        <td mat-cell *matCellDef="let Subasta">{{Subasta.TiempoInicio}} {{Subasta.HoraInicio}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Fecha Fin">
+        <th mat-header-cell *matHeaderCellDef>Fecha Fin</th>
+        <td mat-cell *matCellDef="let Subasta">{{Subasta.TiempoFin}} {{Subasta.HoraFin}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Estado">
+        <th mat-header-cell *matHeaderCellDef>Activa</th>
+        <td mat-cell *matCellDef="let Subasta">
+            <span *ngIf="Subasta.Estado === '0'"> No</span>    
+            <span *ngIf="Subasta.Estado === '1'"> Si</span>        
+        </td>
+    </ng-container>
+    
+
+    <!--Editar Acesorios-->
+    <ng-container matColumnDef="Editar">
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
+        <td mat-cell *matCellDef="let Subasta">
+            <a mat-icon-button [routerLink]="['/Panel/Subasta/Editar',Subasta.Id]">
+                <mat-icon color="primary">edit</mat-icon>
+            </a>
+        </td>
+    </ng-container>
+    <!--Eliminar Acesorios-->
+    <ng-container matColumnDef="Eliminar">
+        <th mat-header-cell *matHeaderCellDef >Eliminar</th>
+        <td mat-cell *matCellDef="let Subasta" >
+            <button (click)="eliminarSubasta(Subasta)" mat-icon-button>
+                <mat-icon color="warn">delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columndefs"></tr>
+    <tr mat-row *matRowDef="let Subasta; columns: columndefs;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+</div>
+

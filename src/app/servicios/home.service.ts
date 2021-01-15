@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders} from "@angular/common/http";
-import { Subasta } from "../subasta"
+import { Puja } from "../puja"
 import { environment } from "../../environments/environment";
 
 @Injectable({
@@ -14,4 +14,9 @@ export class HomeService {
   getSubastaActivasUno(){
     return this.http.get(`${this.baseUrl}/getSubastaHome.php`);
   }
+
+  addPuja(puja: Puja){
+    return this.http.post(`${this.baseUrl}/AgregarPujaHome.php`, puja);
+  }
+
 }

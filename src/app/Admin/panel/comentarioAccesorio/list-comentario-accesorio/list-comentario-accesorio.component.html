@@ -1,0 +1,52 @@
+<div class="row mt-2">
+    <div class="col-4 text-left">
+        <button class="ml-2" mat-raised-button [routerLink]="['/Panel']"  color="warn">Volver al Panel</button >
+    </div>
+    <div class="col-4 text-center">
+        <h2>Listado de Comentario Juego</h2>
+    </div>
+    <div class="col-4 text-right ">Añadir Comentario Accesorio
+        <a mat-icon-button [routerLink]="['/Panel/ComentarioAccesorio/Agregar']">
+            <mat-icon color="primary">add_box</mat-icon>
+        </a>
+    </div>
+</div>
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="listaComentarioAccesorio" class="mat-elevation-z8 col-12" style="width:100%;">
+    <ng-container matColumnDef="Accesorio">
+        <th mat-header-cell *matHeaderCellDef>Accesorio</th>
+        <td mat-cell *matCellDef="let ComentarioAccesorio"> {{ComentarioAccesorio.Nombre_Accesorio}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Usuario">
+        <th mat-header-cell *matHeaderCellDef>Usuario</th>
+        <td mat-cell *matCellDef="let ComentarioAccesorio"> {{ComentarioAccesorio.Nombre_User}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Comentario">
+      <th mat-header-cell *matHeaderCellDef>Comentario</th>
+      <td mat-cell *matCellDef="let ComentarioAccesorio">{{ComentarioAccesorio.Comentario}}</td>
+    </ng-container>
+    
+    <!--Editar Acesorios-->
+    <ng-container matColumnDef="Editar">
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
+        <td mat-cell *matCellDef="let ComentarioAccesorio">
+            <a mat-icon-button [routerLink]="['/Panel/ComentarioAccesorio/Editar',ComentarioAccesorio.Id_Accesorio,ComentarioAccesorio.Id_User]">
+                <mat-icon color="primary">edit</mat-icon>
+            </a>
+        </td>
+    </ng-container>
+    <!--Eliminar Acesorios-->
+    <ng-container matColumnDef="Eliminar">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let ComentarioAccesorio" >
+            <button (click)="eliminarComentarioAccesorio(ComentarioAccesorio)" mat-icon-button>
+                <mat-icon color="warn">delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columndefs"></tr>
+    <tr mat-row *matRowDef="let ComentarioAccesorio; columns: columndefs;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+</div>

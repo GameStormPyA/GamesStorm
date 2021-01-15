@@ -1,0 +1,80 @@
+<div class="row mt-2">
+    <div class="col-4 text-left">
+        <button class="ml-2" mat-raised-button [routerLink]="['/Panel']"  color="warn">Volver al Panel</button >
+    </div>
+    <div class="col-4 text-center">
+        <h2>Listado de Juegos</h2>
+    </div>
+    <div class="col-4 text-right ">Añadir Juego
+        <a mat-icon-button [routerLink]="['/Panel/Juego/Agregar']">
+            <mat-icon color="primary">add_box</mat-icon>
+   </a>
+    </div>
+</div>
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="listaJuego" class="mat-elevation-z8 col-12" style="width:100%;">
+    <ng-container matColumnDef="Nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let Juego"> {{Juego.Nombre}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Descripcion">
+      <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+      <td mat-cell *matCellDef="let Juego">{{Juego.Descripcion}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Portada">
+        <th mat-header-cell *matHeaderCellDef>Portada</th>
+        <td mat-cell *matCellDef="let Juego"><img [src]="Juego.Portada" alt="{{Juego.Portada}}" class="h-25 w-25"/></td>
+    </ng-container>
+    <ng-container matColumnDef="Lanzamiento">
+        <th mat-header-cell *matHeaderCellDef>Lanzamiento</th>
+        <td mat-cell *matCellDef="let Juego">{{Juego.Lanzamiento}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Valoracion">
+        <th mat-header-cell *matHeaderCellDef>Valoracion</th>
+        <td mat-cell *matCellDef="let Juego">{{Juego.Valoracion}}</td>
+    </ng-container>
+    <ng-container matColumnDef="NumValoraciones">
+        <th mat-header-cell *matHeaderCellDef>NumValoraciones</th>
+        <td mat-cell *matCellDef="let Juego">{{Juego.NumValoraciones}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Imagenes" >
+        <th mat-header-cell *matHeaderCellDef>Imagenes</th>
+        <td mat-cell *matCellDef="let Juego"> <img [src]="Juego.Imagenes" alt="{{Juego.Imagenes}}" class="h-25 w-25"/></td>
+    </ng-container>
+    <ng-container matColumnDef="Video">
+        <th mat-header-cell *matHeaderCellDef>Video</th>
+        <td mat-cell *matCellDef="let Juego"><a href="{{Juego.Video}}">{{Juego.Video}}</a></td>
+    </ng-container>
+    <ng-container matColumnDef="EdadMin">
+        <th mat-header-cell *matHeaderCellDef>Edad Minima</th>
+        <td mat-cell *matCellDef="let Juego"> {{Juego.EdadMin}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Genero">
+        <th mat-header-cell *matHeaderCellDef>Genero</th>
+        <td mat-cell *matCellDef="let Juego"> {{Juego.Nombre_Genero}} </td>
+    </ng-container>
+
+    <!--Editar Acesorios-->
+    <ng-container matColumnDef="Editar">
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
+        <td mat-cell *matCellDef="let Juego">
+            <a mat-icon-button [routerLink]="['/Panel/Juego/Editar',Juego.Id]">
+                <mat-icon color="primary">edit</mat-icon>
+            </a>
+        </td>
+    </ng-container>
+    <!--Eliminar Acesorios-->
+    <ng-container matColumnDef="Eliminar">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let Juego" >
+            <button (click)="eliminarJuego(Juego)" mat-icon-button>
+                <mat-icon color="warn">delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columndefs"></tr>
+    <tr mat-row *matRowDef="let Juego; columns: columndefs;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+</div>

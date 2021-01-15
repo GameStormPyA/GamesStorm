@@ -1,1 +1,54 @@
-<p>register works!</p>
+<form (ngSubmit)="onSubmit()" #formAccesorio="ngForm" [formGroup]="LoginRegistro" class="mt-4">   
+    <div class="container d-flex justify-content-center">
+        <div class="LoginRegistro shadow-lg p-4 mb-4 bg-white rounded col-7">
+            <div>
+                <h1 class="text-center"><b>Registrate en GameStorm</b></h1>
+            </div>
+            <div class="row col-12">
+                <div class="col-lg-6 col-md-12 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="RegistroModel.Nombre" class="form-control" type="text" placeholder="Nombre" formControlName="Nombre">
+                        <mat-error *ngIf="isValidField('Nombre')" >
+                            {{ getErrorMessage("Nombre") }} 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-md-12 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="RegistroModel.Apellidos" class="form-control" type="text" placeholder="Apellidos" formControlName="Apellidos">
+                        <mat-error *ngIf="isValidField('Apellidos')" >
+                            {{ getErrorMessage("Apellidos") }} 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-md-12 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="RegistroModel.Correo" class="form-control" type="text" placeholder="Correo" formControlName="Correo" id="Correo">
+                        <mat-error *ngIf="isValidField('Correo')" >
+                            {{ getErrorMessage("Correo") }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-md-12 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="RegistroModel.Edad" class="form-control" type="number" placeholder="Edad" formControlName="Edad" >
+                        <mat-error *ngIf="isValidField('Edad')" >
+                            {{ getErrorMessage("Edad") }} 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-md-12 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="RegistroModel.Contrasena"  class="form-control" type="password" placeholder="Contraseña" formControlName="Contrasena">
+                        <mat-error *ngIf="isValidField('Contrasena')" >
+                            {{ getErrorMessage("Contrasena") }} 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 text-center 2">
+                        <button [disabled]="LoginRegistro.invalid" id="BotonRegistro" type="submit" mat-flat-button color="accent">Registrarse</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+</form>

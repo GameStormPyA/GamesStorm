@@ -1,0 +1,69 @@
+
+<form (ngSubmit)="onSubmit()" #formSubasta="ngForm" [formGroup]="LoginRelacionAccesorio" class="mt-4">    
+    <div class="container">
+        <div class="shadow-lg p-4 mb-4 bg-white rounded ">
+            <div>
+                <h1 class="text-center">Añadir Subasta</h1>
+            </div>
+            <div class="row col-12">
+                <div class="col-lg-4 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <mat-select  placeholder="Accesorio" [(ngModel)]="AccesorioModel.Id_Accesorio"  formControlName="Id_Accesorio" >
+                            <mat-option *ngFor="let Accesorio of listaAccesorio" [value]="Accesorio.Id">
+                                {{Accesorio.Nombre}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="isValidField('Id_Accesorio')" >
+                            {{ getErrorMessage("Id_Accesorio") }} 
+                        </mat-error>
+                    </mat-form-field> 
+                </div>
+                <div class="col-lg-4 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <mat-select  placeholder="Platafroma" [(ngModel)]="AccesorioModel.Id_Plataforma"  formControlName="Id_Plataforma" >
+                            <mat-option *ngFor="let Platafroma of listaPlataforma" [value]="Platafroma.Id">
+                                {{Platafroma.Nombre}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="isValidField('Id_Plataforma')" >
+                            {{ getErrorMessage("Id_Plataforma") }} 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-12 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput  [(ngModel)]="AccesorioModel.Precio" type="number" placeholder="Precio" min="0" formControlName="Precio">
+                        <mat-error *ngIf="isValidField('Precio')" >
+                            {{ getErrorMessage("PrecioMin") }} 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row col-12">
+                <div class="col-lg-4 col-md-12 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput  [(ngModel)]="AccesorioModel.Edicion" type="text" placeholder="Edicion" formControlName="Edicion">
+                        <mat-error *ngIf="isValidField('Precio')" >
+                            {{ getErrorMessage("PrecioMin") }} 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-12 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput  [(ngModel)]="AccesorioModel.Stock" type="number" placeholder="Stock" min="0" formControlName="Stock">
+                        <mat-error *ngIf="isValidField('Precio')" >
+                            {{ getErrorMessage("PrecioMin") }} 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="d-flex ">
+                <div class="ml-auto p-2 pr-3">
+                <button [disabled]="LoginRelacionAccesorio.invalid" type="submit" mat-flat-button color="accent">Guardar</button>
+                &nbsp;
+                <button (click)="volver()" type="button" mat-flat-button color="primary">Volver</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+</form>

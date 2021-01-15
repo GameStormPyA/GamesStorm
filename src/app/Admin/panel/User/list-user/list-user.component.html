@@ -1,0 +1,72 @@
+<div class="row mt-2">
+    <div class="col-4 text-left">
+        <button class="ml-2" mat-raised-button [routerLink]="['/Panel']"  color="warn">Volver al Panel</button >
+    </div>
+    <div class="col-4 text-center">
+        <h2>Listado de Usuarios</h2>
+    </div>
+    <div class="col-4 text-right ">Añadir User
+        <a mat-icon-button [routerLink]="['/Panel/User/Agregar']">
+            <mat-icon color="primary">add_box</mat-icon>
+   </a>
+    </div>
+</div>
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="listaUser" class="mat-elevation-z8 col-12" style="width:100%;">
+    <ng-container matColumnDef="Nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let User"> {{User.Nombre}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Apellido">
+      <th mat-header-cell *matHeaderCellDef>Apellido</th>
+      <td mat-cell *matCellDef="let User">{{User.Apellido}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Cuenta">
+        <th mat-header-cell *matHeaderCellDef>Cuenta</th>
+        <td mat-cell *matCellDef="let User"> {{User.Cuenta}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Direccion">
+        <th mat-header-cell *matHeaderCellDef>Direccion</th>
+        <td mat-cell ng-if="User.Direccion" *matCellDef="let User">{{User.Direccion}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Correo">
+        <th mat-header-cell *matHeaderCellDef>Correo</th>
+        <td mat-cell *matCellDef="let User"> {{User.Correo}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Edad">
+        <th mat-header-cell *matHeaderCellDef>Edad</th>
+        <td mat-cell *matCellDef="let User"> {{User.Edad}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Logo" >
+        <th mat-header-cell *matHeaderCellDef>Logo</th>
+        <td mat-cell *matCellDef="let User"> <img [src]="User.Logo" alt="{{User.Logo}}" class="h-25 w-25"/></td>
+    </ng-container>
+    <ng-container matColumnDef="Administrador">
+        <th mat-header-cell *matHeaderCellDef>Administrador</th>
+        <td mat-cell *matCellDef="let User"> {{User.Administrador}} </td>
+    </ng-container>
+
+    <!--Editar Acesorios-->
+    <ng-container matColumnDef="Editar">
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
+        <td mat-cell *matCellDef="let User">
+            <a mat-icon-button [routerLink]="['/Panel/User/Editar',User.Id]">
+                <mat-icon color="primary">edit</mat-icon>
+            </a>
+        </td>
+    </ng-container>
+    <!--Eliminar Acesorios-->
+    <ng-container matColumnDef="Eliminar">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let User" >
+            <button (click)="eliminarUser(User)" mat-icon-button>
+                <mat-icon color="warn">delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columndefs"></tr>
+    <tr mat-row *matRowDef="let User; columns: columndefs;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+</div>

@@ -1,1 +1,33 @@
-<p>login works!</p>
+<form (ngSubmit)="onSubmit()" #formAccesorio="ngForm" [formGroup]="Login" class="Login">   
+    <div class="container d-flex justify-content-center">
+        <div class="Login shadow-lg p-4 mb-4 bg-white rounded col-6 ">
+            <div>
+                <h1 class="text-center"><b>Iniciar Sesion en GameStorm</b></h1>
+            </div>
+            <div class="row col-12">
+                <div class="col-lg-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="LoginModel.Correo" class="form-control" type="text" placeholder="Correo Electronico" formControlName="Correo" id="Correo">
+                        <mat-error *ngIf="isValidField('Correo')" >
+                            {{ getErrorMessage("Correo") }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="LoginModel.Contrasena"  class="form-control" type="password" placeholder="Contraseña" formControlName="Contrasena">
+                        <mat-error *ngIf="isValidField('Contrasena')" >
+                            {{ getErrorMessage("Contrasena") }} 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-6 text-center mt-2 " >
+                    <a [routerLink]="['/Registro']"><strong>¿No tienes una cuenta?</strong></a>
+                </div>
+                <div class="col-lg-6 text-center mt-1">
+                        <button [disabled]="Login.invalid" id="BotonInicio" type="submit" mat-flat-button color="accent">Iniciar Sesion</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+</form>

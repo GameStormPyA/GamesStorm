@@ -1,0 +1,79 @@
+<form (ngSubmit)="onSubmit()" #formSubasta="ngForm" [formGroup]="LoginUser" class="mt-4">    
+    <div class="container">
+        <div class="shadow-lg p-4 mb-4 bg-white rounded ">
+            <div>
+                <h1 class="text-center"><b>Editar Usuario</b></h1>
+            </div>
+            <div class="row col-12">
+                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput  [(ngModel)]="userSelect.Nombre" type="text" placeholder="Nombre"  formControlName="Nombre">
+                        <mat-error *ngIf="isValidField('Nombre')" >
+                            {{ getErrorMessage("Nombre") }} 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput  [(ngModel)]="userSelect.Apellido" type="text" placeholder="Apellidos"  formControlName="Apellido">
+                        <mat-error *ngIf="isValidField('Apellido')" >
+                            {{ getErrorMessage("Apellido") }} 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput  [(ngModel)]="userSelect.Cuenta" type="text" placeholder="Cuenta"  formControlName="Cuenta">
+                        <mat-error *ngIf="isValidField('Cuenta')" >
+                            {{ getErrorMessage("Cuenta") }} 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput  [(ngModel)]="userSelect.Direccion" type="text" placeholder="Direccion"  formControlName="Direccion">
+                        <mat-error *ngIf="isValidField('Direccion')" >
+                            {{ getErrorMessage("Direccion") }} 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row col-12">
+                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput  [(ngModel)]="userSelect.Correo" type="text" placeholder="Correo"  formControlName="Correo" id="Correo">
+                        <mat-error *ngIf="isValidField('Correo')" >
+                            {{ getErrorMessage("Correo") }} 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput  [(ngModel)]="userSelect.Edad" type="number" placeholder="Edad"  formControlName="Edad">
+                        <mat-error *ngIf="isValidField('Edad')" >
+                            {{ getErrorMessage("Edad") }} 
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                    <mat-radio-group [(ngModel)]="userSelect.Administrador"  formControlName="Administrador" ><b><u>Administrador</u></b><br>
+                        <mat-radio-button value="false"  >No</mat-radio-button> 
+                        <mat-radio-button value="true" class="ml-2">Si</mat-radio-button>
+                        <mat-error *ngIf="isValidField('Administrador')" >
+                            {{ getErrorMessage("Administrador") }} 
+                        </mat-error>
+                    </mat-radio-group>
+                </div>
+                
+            </div>
+            <div class=" row col-12">
+                
+                <div class="col-lg-12 col-md-6 ml-auto p-2 pr-3 d-flex justify-content-end">
+                <button [disabled]="LoginUser.invalid" type="submit" mat-flat-button color="accent">Guardar</button>
+                &nbsp;
+                <button (click)="volver()" type="button" mat-flat-button color="primary">Volver</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+</form>

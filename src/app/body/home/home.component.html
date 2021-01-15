@@ -1,41 +1,18 @@
- <!--
-    <div class="container">
-        <div class="shadow-lg p-4 mb-4 bg-white rounded ">
-            <div>
-                <h1 class="text-center">Administrador de Base de datos</h1>
-            </div>
-            <div class="row col-12">
-                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
-                    <button  mat-raised-button [routerLink]="['/Accesorios']">Accesorios</button >
-                </div>
-                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
-                    <button  mat-raised-button [routerLink]="['/Categoria']">Categoria</button >
-                </div>
-                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
-                    <button  mat-raised-button [routerLink]="['/Subastas']">Subastas</button >
-                </div>
-                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
-                    <button  mat-raised-button [routerLink]="['/Pujas']">Pujas</button >
-                </div>
-            </div>
-        </div>
-    </div> 
---> 
-  <mat-carousel
+<mat-carousel
   timings="250ms ease-in"
   [autoplay]="true"
   interval="5000"
   color="accent"
   maxWidth="auto"
-  proportion="25"
+  proportion="20"
   slides="5" 
   [loop]="true"
   [hideArrows]="false"
-  [hideIndicators]="false"
+  [hideIndicators]="true"
   [useKeyboard]="true"
   [useMouseWheel]="false"
-  orientation="ltr">
-
+  orientation="ltr"
+  class="border">
     <mat-carousel-slide
         #matCarouselSlide
         *ngFor="let slide of slides; let i = index"
@@ -43,28 +20,83 @@
         overlayColor=""
         [hideOverlay]="false">
         
+            <div class="DivCarrusel">
+                 <h1 class="h1Carusel" data-heading="Slide">
+                    <b> 
+                        <a href="{{slide.Text}}">
+                             {{slide.Text}}
+                        </a>   
+                    </b>
+                </h1>
+            </div>
+        
     </mat-carousel-slide>
 </mat-carousel>
+
+
 <div class="row col-12">
-    <div class="col-3  mt-2 ">
+    <div class="col-lg-3 col-md-5   mt-2 ml-3 ">
         <mat-card class="example-card">
             <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>Puja</mat-card-title>
+              <div mat-card-avatar class="example-header-image">
+                <span class="material-icons ">
+                    sports_esports
+                </span>
+            </div>
+            
+              <mat-card-title>
+                       Subasta                 
+              </mat-card-title>
             </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-              <p>
-                {{ listaSubastas.Nombre_Juego }}
-              </p>
+            <mat-card-content>            
+                    <h3 style="text-align: center;">
+                       <b> {{ listaSubastas[0].Nombre_Juego }} {{ listaSubastas[0].Nombre_Plataforma }}</b>
+                    </h3>       
             </mat-card-content>
+            <img mat-card-image src="{{listaSubastas[0].Portada}}" alt="Fotografia de  {{listaSubastas[0].Nombre_Juego}}"> 
+            <div class="Tiempo col-12 " >
+                <p class="unit">
+                    <strong>{{TiempoRestante.days}}</strong>
+                    <span>Días</span>
+                </p>
+                <p class="unit">
+                    <strong>{{TiempoRestante.hours}}</strong>
+                    <span>Horas</span>
+                </p>
+                <p class="unit">
+                    <strong>{{TiempoRestante.minutes}}</strong>
+                    <span>Mins</span>
+                </p>
+                <p class="unit">
+                    <strong>{{TiempoRestante.seconds}}</strong>
+                    <span>Seg</span>
+                </p>
+            </div>
+            <div class="PrecioPuja col-12">
+                <b><h2> Puja  {{ listaSubastas[0].PrecioMin }}€</h2></b>
+            </div>
             <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
+                <form (ngSubmit)="onSubmit()" #formSubasta="ngForm" [formGroup]="SubastaHome">
+                    <div class="row col-12 ml-1 mb-2">    
+                        <div class="InputPuja col-6">
+                          
+                                <input matInput [(ngModel)]="listaSubastas[0].PrecioMin" 
+                                                type="number" class="form-control" 
+                                                placeholder="{{listaSubastas[0].PrecioMin}}"
+                                                formControlName="Pujado" min="{{listaSubastas[0].PrecioMin}}" autocomplete="off">
+                            
+                        </div>
+                        <div class="BotonPuja col-6">
+
+                                <button [disabled]="SubastaHome.invalid" type="submit" mat-flat-button color="accent">Pujar</button>
+
+                        </div>  
+                    </div>      
+                </form>
             </mat-card-actions>
           </mat-card>
     </div>
-    <div class="col-8 border">
+    <div class="col-8 ml-2 border">
 
     </div>
 </div>

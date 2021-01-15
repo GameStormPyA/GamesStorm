@@ -1,0 +1,57 @@
+<form (ngSubmit)="onSubmit()" #formSubasta="ngForm" [formGroup]="LoginCompraJuego" class="mt-4">    
+    <div class="container">
+        <div class="shadow-lg p-4 mb-4 bg-white rounded ">
+            <div>
+                <h1 class="text-center">Editar Comentario Juego</h1>
+            </div>
+            <div class="row col-12">
+                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput  value="{{CompraJuegoSelecionada.Nombre_User}} " type="text" placeholder="Usuario"  disabled>
+                    </mat-form-field>        
+                </div>
+                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput  value="{{CompraJuegoSelecionada.Nombre_Juego}} " type="text" placeholder="Juego"  disabled>
+                    </mat-form-field> 
+                </div>
+                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput  value="{{CompraJuegoSelecionada.Nombre_Plaforma}} " type="text" placeholder="Plataforma"  disabled>
+                    </mat-form-field> 
+                </div>
+                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput  [(ngModel)]="CompraJuegoSelecionada.Edicion" type="text" placeholder="Edicion"  formControlName="Edicion">
+                        <mat-error *ngIf="isValidField('Edicion')" >
+                            {{ getErrorMessage("Edicion") }} 
+                        </mat-error>
+                    </mat-form-field>     
+                </div>
+                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput  [(ngModel)]="CompraJuegoSelecionada.Precio" type="number" placeholder="Precio" min="0" formControlName="Precio">
+                        <mat-error *ngIf="isValidField('Precio')" >
+                            {{ getErrorMessage("Precio") }} 
+                        </mat-error>
+                    </mat-form-field>     
+                </div>
+                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <input matInput  [(ngModel)]="CompraJuegoSelecionada.Cantidad" type="number" placeholder="Cantidad" min="0" formControlName="Cantidad">
+                        <mat-error *ngIf="isValidField('Cantidad')" >
+                            {{ getErrorMessage("Cantidad") }} 
+                        </mat-error>
+                    </mat-form-field>     
+                </div>
+            </div>
+            <div class="d-flex ">
+                <div class="ml-auto p-2 pr-3">
+                <button [disabled]="LoginCompraJuego.invalid" type="submit" mat-flat-button color="accent">Guardar</button>
+                &nbsp;
+                <button (click)="volver()" type="button" mat-flat-button color="primary">Volver</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+</form>

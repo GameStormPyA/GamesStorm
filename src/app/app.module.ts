@@ -7,13 +7,9 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeadComponent } from './head/head.component';
-import { InsertAccesoriosComponent } from './body/insert-accesorios/insert-accesorios.component';
-import { ListAccesoriosComponent } from './body/list-accesorios/list-accesorios.component';
 //clases
-import { AccesoriosService} from './servicios/accesorios.service';
-import { CategoriaService} from './servicios/categoria.service';
-import { PujaService} from './servicios/puja.service';
-import { SubastaService} from './servicios/subasta.service';
+import { HomeService} from './servicios/home.service';
+import { AdminService} from './servicios/admin.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //material
 import { MatSliderModule } from '@angular/material/slider';
@@ -29,6 +25,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule} from '@angular/material/badge';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { MatCardModule} from '@angular/material/card';
+import { MatRadioModule} from '@angular/material/radio';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
 //form
 import { FormsModule } from '@angular/forms';
@@ -36,14 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 //
-import { EditAcessoriosComponent } from './body/edit-acessorios/edit-acessorios.component';
 import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
-import { ListCategoriaComponent } from './body/list-categoria/list-categoria.component';
-import { ListSubastaComponent } from './body/list-subasta/list-subasta.component';
-import { EditSubastaComponent } from './body/edit-subasta/edit-subasta.component';
-import { InsertSubastaComponent } from './body/insert-subasta/insert-subasta.component';
-import { EditPujaComponent } from './body/edit-puja/edit-puja.component';
-import { ListPujaComponent } from './body/list-puja/list-puja.component';
 import { HomeComponent } from './body/home/home.component';
 import { ProductosComponent } from './central/productos/productos.component';
 import { LoginComponent } from './session/login/login.component';
@@ -54,7 +45,44 @@ import { SubastaComponent } from './subasta/subasta/subasta.component';
 import { UserComponent } from './config/user/user.component';
 import { NoticiaComponent } from './news/noticia/noticia.component';
 import { AboutComponent } from './about/about/about.component';
-
+//import { PlataformaComponent } from './Admin/panel/plataforma/plataforma.component';
+import { PanelComponent } from './Admin/panel/panel.component';
+import { CategoriaComponent } from './Admin/panel/categoria/categoria.component';
+import { GeneroComponent } from './Admin/panel/genero/genero.component';
+import { ListUserComponent } from './Admin/panel/User/list-user/list-user.component';
+import { AgregarUserComponent } from './Admin/panel/User/agregar-user/agregar-user.component';
+import { EditarUserComponent } from './Admin/panel/User/editar-user/editar-user.component';
+import { AgregarJuegoComponent } from './Admin/panel/Juego/agregar-juego/agregar-juego.component';
+import { ListJuegoComponent } from './Admin/panel/Juego/list-juego/list-juego.component';
+import { EditarJuegoComponent } from './Admin/panel/Juego/editar-juego/editar-juego.component';
+import { ListaRelacionJuegoComponent } from './Admin/panel/Relacion-Juego/lista-relacion-juego/lista-relacion-juego.component';
+import { AgregarRelacionJuegoComponent } from './Admin/panel/Relacion-Juego/agregar-relacion-juego/agregar-relacion-juego.component';
+import { EditarRelacionJuegoComponent } from './Admin/panel/Relacion-Juego/editar-relacion-juego/editar-relacion-juego.component';
+import { ListAccesorioComponent } from './Admin/panel/Accesorio/list-accesorio/list-accesorio.component';
+import { AgregarAccesorioComponent } from './Admin/panel/Accesorio/agregar-accesorio/agregar-accesorio.component';
+import { EditarAccesorioComponent } from './Admin/panel/Accesorio/editar-accesorio/editar-accesorio.component';
+import { EditarRelacionAccesorioComponent } from './Admin/panel/relacionAccesorio/editar-relacion-accesorio/editar-relacion-accesorio.component';
+import { ListRelacionAccesorioComponent } from './Admin/panel/relacionAccesorio/list-relacion-accesorio/list-relacion-accesorio.component';
+import { AgregarRelacionAccesorioComponent } from './Admin/panel/relacionAccesorio/agregar-relacion-accesorio/agregar-relacion-accesorio.component';
+import { AgregarSubastaComponent } from './Admin/panel/subasta/agregar-subasta/agregar-subasta.component';
+import { EditarSubastaComponent } from './Admin/panel/subasta/editar-subasta/editar-subasta.component';
+import { ListSubastaComponent} from './Admin/panel/subasta/list-subasta/list-subasta.component';
+import { EditarPujaComponent } from './Admin/panel/puja/editar-puja/editar-puja.component';
+import { AgregarPujaComponent } from './Admin/panel/puja/agregar-puja/agregar-puja.component';
+import { ListPujaComponent } from './Admin/panel/puja/list-puja/list-puja.component';
+import { AgregarComentarioJuegoComponent } from './Admin/panel/comentarioJuego/agregar-comentario-juego/agregar-comentario-juego.component';
+import { ListComentarioJuegoComponent } from './Admin/panel/comentarioJuego/list-comentario-juego/list-comentario-juego.component';
+import { EditarComentarioJuegoComponent } from './Admin/panel/comentarioJuego/editar-comentario-juego/editar-comentario-juego.component';
+import { AgregarComentarioAccesorioComponent } from './Admin/panel/comentarioAccesorio/agregar-comentario-accesorio/agregar-comentario-accesorio.component';
+import { ListComentarioAccesorioComponent } from './Admin/panel/comentarioAccesorio/list-comentario-accesorio/list-comentario-accesorio.component';
+import { EditarComentarioAccesorioComponent } from './Admin/panel/comentarioAccesorio/editar-comentario-accesorio/editar-comentario-accesorio.component';
+import { EditarCompraJuegoComponent } from './Admin/panel/CompraJuego/editar-compra-juego/editar-compra-juego.component';
+import { ListCompraJuegoComponent } from './Admin/panel/CompraJuego/list-compra-juego/list-compra-juego.component';
+import { AgregarCompraJuegoComponent } from './Admin/panel/CompraJuego/agregar-compra-juego/agregar-compra-juego.component';
+import { AgregarCompraAccesorioComponent } from './Admin/panel/CompraAccesorio/agregar-compra-accesorio/agregar-compra-accesorio.component';
+import { EditarCompraAccesorioComponent } from './Admin/panel/CompraAccesorio/editar-compra-accesorio/editar-compra-accesorio.component';
+import { ListCompraAccesorioComponent } from './Admin/panel/CompraAccesorio/list-compra-accesorio/list-compra-accesorio.component';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -62,15 +90,8 @@ import { AboutComponent } from './about/about/about.component';
     MenuComponent,
     FooterComponent,
     HeadComponent,
-    InsertAccesoriosComponent,
-    ListAccesoriosComponent,
-    EditAcessoriosComponent,
     DialogoConfirmacionComponent,
-    ListCategoriaComponent,
     ListSubastaComponent,
-    EditSubastaComponent,
-    InsertSubastaComponent,
-    EditPujaComponent,
     ListPujaComponent,
     HomeComponent,
     ProductosComponent,
@@ -82,6 +103,41 @@ import { AboutComponent } from './about/about/about.component';
     UserComponent,
     NoticiaComponent,
     AboutComponent,
+  //PlataformaComponent,
+    PanelComponent,
+    CategoriaComponent,
+    GeneroComponent,
+    ListUserComponent,
+    AgregarUserComponent,
+    EditarUserComponent,
+    AgregarJuegoComponent,
+    ListJuegoComponent,
+    EditarJuegoComponent,
+    ListaRelacionJuegoComponent,
+    AgregarRelacionJuegoComponent,
+    EditarRelacionJuegoComponent,
+    ListAccesorioComponent,
+    AgregarAccesorioComponent,
+    EditarAccesorioComponent,
+    EditarRelacionAccesorioComponent,
+    ListRelacionAccesorioComponent,
+    AgregarRelacionAccesorioComponent,
+    AgregarSubastaComponent,
+    EditarSubastaComponent,
+    EditarPujaComponent,
+    AgregarPujaComponent,
+    AgregarComentarioJuegoComponent,
+    ListComentarioJuegoComponent,
+    EditarComentarioJuegoComponent,
+    AgregarComentarioAccesorioComponent,
+    ListComentarioAccesorioComponent,
+    EditarComentarioAccesorioComponent,
+    EditarCompraJuegoComponent,
+    ListCompraJuegoComponent,
+    AgregarCompraJuegoComponent,
+    AgregarCompraAccesorioComponent,
+    EditarCompraAccesorioComponent,
+    ListCompraAccesorioComponent
   ],
   imports: [
     BrowserModule,
@@ -105,13 +161,13 @@ import { AboutComponent } from './about/about/about.component';
     MatMenuModule,
     MatBadgeModule,
     MatCarouselModule.forRoot(),
-    MatCardModule
+    MatCardModule,
+    MatRadioModule,
+    NgxMatFileInputModule,
   ],
   providers: [
-    AccesoriosService,
-    CategoriaService,
-    PujaService,
-    SubastaService
+    HomeService,
+    AdminService
   ],
   bootstrap: [AppComponent]
 })

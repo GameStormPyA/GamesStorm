@@ -8,8 +8,8 @@
 }
 .IconosPerfileCarrito{
     margin-top: 12px;
-    width: 30%;
     height: 70%;
+    width: 20%;
 }
 .TextoMenuPerfile{
     justify-content: center;
@@ -20,4 +20,28 @@
 }
 button{
     outline:none;
+}
+
+.ConfUsua{
+    position: absolute;
+    background-color: teal;
+    border-color: rgb(81, 132, 226);
+}
+.MenuPerfil{
+    position: absolute;
+    background-color: teal;
+    border-color: rgb(81, 132, 226);
+}
+.IconosPerfile{
+    width: 20%;
+}
+
+#ImagenCabeza{
+    width:40%;
+    height: 100%;
+}
+#Header{
+    text-align: left;
+    background-color: black;
+    border-bottom: 2px solid palevioletred;
 }

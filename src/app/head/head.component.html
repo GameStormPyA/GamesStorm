@@ -1,29 +1,31 @@
-<div class="d-flex border bg-secondary text-white">
-    <div class="mr-auto m-2 ml-5">
+<div class="d-flex text-white d-flex justify-content-center" id="Header" >
+    <div class=" ml-1 mt-1 ">
        <a [routerLink]="['/Home']" >
-            <img src="../../assets/image/Logo/GamesStorm 2.png"  width="200"
-            height="50" alt="Logo GamesStorm">
+            <img src="../../assets/image/header.jpg"  id="ImagenCabeza"  alt="Logo GamesStorm">
         </a>
     </div>
-    <div class="col align-self-center d-flex flex-row-reverse">
-       <!-- <a [routerLink]="['/Home']" class="text-white" >
-            <span class="material-icons" >
-                account_circle
-            </span>
-         </a>-->
-        <button mat-icon-button [matMenuTriggerFor]="menu" class="BotonPerfil mr-2">
+    <div class="col align-self-center d-flex flex-row-reverse" id="ConfUsua">
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="mr-2">
             <mat-icon>account_circle</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="MenuPerfil">
-            <button mat-menu-item class="DivProfile">   
+            <button mat-menu-item class="DivProfile" [routerLink]="['/Login']">   
                 <mat-icon  class="IconosPerfile">login</mat-icon>
                 <span class="TextoMenuPerfile"><b>Iniciar sesion</b></span>
-              </button>
-            <button mat-menu-item class="DivProfile">   
+            </button>
+            <button mat-menu-item class="DivProfile" [routerLink]="['/Registro']">   
+              <mat-icon  class="IconosPerfile">person_add_alt_1</mat-icon>
+              <span class="TextoMenuPerfile"><b>Registrarse </b></span>
+            </button>
+            <button mat-menu-item class="DivProfile" >   
               <mat-icon  class="IconosPerfile">settings</mat-icon>
               <span class="TextoMenuPerfile"><b>Configurar Perfil</b></span>
             </button>
-            <button mat-menu-item class="DivProfile">
+            <button mat-menu-item class="DivProfile" [routerLink]="['/Panel']" >   
+              <mat-icon  class="IconosPerfile">admin_panel_settings</mat-icon>
+              <span class="TextoMenuPerfile"><b>Configuración Administrador</b></span>
+            </button>
+            <button mat-menu-item class="DivProfile" [routerLink]="['/Carrito']">
               <mat-icon matBadge="0" class="IconosPerfileCarrito">shopping_cart</mat-icon>
               <span class="TextoMenuPerfile"><b>Carrito</b></span>
             </button>
