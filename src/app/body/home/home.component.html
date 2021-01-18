@@ -34,8 +34,8 @@
 </mat-carousel>
 
 
-<div class="row col-12">
-    <div class="col-lg-3 col-md-5   mt-2 ml-3 ">
+<div class="row col-12" >
+    <div class="col-lg-3 col-md-5   mt-2 ml-3 " *ngFor="let Subasta of listaSubastas" >
         <mat-card class="example-card">
             <mat-card-header>
               <div mat-card-avatar class="example-header-image">
@@ -43,18 +43,17 @@
                     sports_esports
                 </span>
             </div>
-            
               <mat-card-title>
                        Subasta                 
               </mat-card-title>
             </mat-card-header>
             <mat-card-content>            
                     <h3 style="text-align: center;">
-                       <b> {{ listaSubastas[0].Nombre_Juego }} {{ listaSubastas[0].Nombre_Plataforma }}</b>
+                       <b> {{Subasta.Nombre_Juego}} {{ Subasta.Nombre_Plataforma }}</b>
                     </h3>       
             </mat-card-content>
-            <img mat-card-image src="{{listaSubastas[0].Portada}}" alt="Fotografia de  {{listaSubastas[0].Nombre_Juego}}"> 
-            <div class="Tiempo col-12 " >
+            <img mat-card-image src="{{Subasta.Portada}}" alt="Fotografia de  {{Subasta.Nombre_Juego}}"> 
+            <div class="Tiempo col-12 d-flex justify-content-center" >
                 <p class="unit">
                     <strong>{{TiempoRestante.days}}</strong>
                     <span>Días</span>
@@ -72,23 +71,26 @@
                     <span>Seg</span>
                 </p>
             </div>
-            <div class="PrecioPuja col-12">
-                <b><h2> Puja  {{ listaSubastas[0].PrecioMin }}€</h2></b>
+            <div class="PrecioPuja col-12" id="color">
+                <b><h2 >La puja esta en {{ Subasta.PrecioMin }}€</h2></b>
             </div>
-            <mat-card-actions>
-                <form (ngSubmit)="onSubmit()" #formSubasta="ngForm" [formGroup]="SubastaHome">
+            <div class=" col-12 d-flex justify-content-center" *ngIf="admin === null && Id ===null">
+                <p class="text-danger" >Para pujar debes registrarte *</p>
+            </div>
+            <mat-card-actions *ngIf="admin !== null && Id !==null">
+                <form (ngSubmit)="pujar(Subasta)" #formSubasta="ngForm" [formGroup]="SubastaHome">
                     <div class="row col-12 ml-1 mb-2">    
                         <div class="InputPuja col-6">
                           
-                                <input matInput [(ngModel)]="listaSubastas[0].PrecioMin" 
+                                <input matInput [(ngModel)]="PujaSubastaModel.Puja" 
                                                 type="number" class="form-control" 
-                                                placeholder="{{listaSubastas[0].PrecioMin}}"
-                                                formControlName="Pujado" min="{{listaSubastas[0].PrecioMin}}" autocomplete="off">
+                                                placeholder="{{Subasta.PrecioMin}}"
+                                                formControlName="Pujado" min="{{Subasta.PrecioMin}}"  autocomplete="off">
                             
                         </div>
                         <div class="BotonPuja col-6">
 
-                                <button [disabled]="SubastaHome.invalid" type="submit" mat-flat-button color="accent">Pujar</button>
+                                <button [disabled]="SubastaHome.invalid" type="submit" mat-flat-button color="accent" >Pujar</button>
 
                         </div>  
                     </div>      

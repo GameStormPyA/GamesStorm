@@ -15,6 +15,7 @@ import { ComentarioJuego } from "../AdminClass/comentario-juego";
 import { ComentarioAccesorio } from "../AdminClass/comentario-accesorio";
 import { CompraAccesorio } from "../AdminClass/compra-accesorio";
 import { CompraJuego } from "../AdminClass/compra-juego";
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -26,8 +27,8 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   //Plataforma
-  getPlataforma(){
-    return this.http.get(`${this.baseUrl}/getPlataforma.php`);
+  getPlataforma():Observable<Plataforma[]>{
+    return this.http.get<Plataforma[]>(`${this.baseUrl}/getPlataforma.php`);
   }
 
   DeletePlataforma(plataforma : Plataforma){
@@ -55,8 +56,8 @@ export class AdminService {
     return this.http.post(`${this.baseUrl}/EditCategoria.php`, categoria);
   }
   //Genero
-  getGenero(){
-    return this.http.get(`${this.baseUrl}/getGenero.php`);
+  getGenero():Observable<Genero[]>{
+    return this.http.get<Genero[]>(`${this.baseUrl}/getGenero.php`);
   }
   DeleteGenero(genero: Genero){
     return this.http.delete(`${this.baseUrl}/DeleteGenero.php?Id=${genero.Id}`);

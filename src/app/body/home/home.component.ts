@@ -8,6 +8,7 @@ import { FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as countdown from 'countdown';
 import { Time } from '@angular/common';
+import * as $ from 'jquery';
 
 interface Tiempo{
   hours: number,
@@ -38,12 +39,14 @@ export class HomeComponent implements OnInit {
   HoraFin;
   dateInicio : Date;
   dateFin : Date ;
+  PrecioMinimo:number;
 
+  public Id:any =null;
+  public admin:any =null;
 
   SubastaHome = this.formBuild.group({
-    Pujado: ['',[Validators.required,Validators.min(0)]]
+    Pujado: ['',[Validators.required]]
   });
-  PujaSubastaModel = new Puja(this.IdSubasta,undefined,undefined,undefined,undefined,undefined,'','','');
   
   constructor(private homeService:HomeService,
               private snackBar: MatSnackBar,
@@ -57,12 +60,23 @@ export class HomeComponent implements OnInit {
             {'image': '../../../assets/image/Carrusel/7761.jpg','Text':'the sims snowy escape'}];
   
   ngOnInit(): void {
+    this.Id = localStorage.getItem('Id');
+    this.admin = localStorage.getItem('admi');
+
     this.obtenerSubasta();
-    this.homeService.getSubastaActivasUno().subscribe(datos=>{ 
+
+    setInterval(() => {
+      this.obtenerSubasta(); 
+      }, 4000);
+
+    
+    this.homeService.getSubastaActivasUno().subscribe(datos=>{       
     this.TiempoInicio=datos[0].TiempoInicio;
     this.HoraInicio=datos[0].HoraInicio;
     this.TiempoFin=datos[0].TiempoFin;
     this.HoraFin=datos[0].HoraFin;
+
+    this.PrecioMinimo=datos[0].Id;  
 
     this.IdSubasta=datos[0].Id;
 
@@ -70,13 +84,14 @@ export class HomeComponent implements OnInit {
     this.dateFin = new Date(this.TiempoFin+" "+this.HoraFin);
     
     this.TiempId = countdown(this.dateFin ,(ts)=>{
-      console.log(ts);
-      
+      //console.log(ts);
       this.TiempoRestante = ts;
     },countdown.DAYS | countdown.HOURS | countdown.MINUTES | countdown.SECONDS);
     });
-    
   }
+  
+  PujaSubastaModel = new Puja(undefined,undefined,undefined,undefined,undefined,undefined,'','','');
+  
 
   ngOnDestroy(){
     if(this.TiempId){
@@ -88,20 +103,45 @@ export class HomeComponent implements OnInit {
     return this.homeService.getSubastaActivasUno().subscribe((listaSubastas: Subasta[]) => this.listaSubastas = listaSubastas);
   }
 
-  onSubmit() {
-    this.homeService.addPuja(this.PujaSubastaModel).subscribe((datos) => {
-      if(datos=="SinSesion"){
-        this.snackBar.open('Debes iniciar sesion', undefined, {
-          duration: 2000,
-          horizontalPosition: this.horizontalPosition,
-          verticalPosition: this.verticalPosition
-        });
-      }else{
-        this.snackBar.open('Puja Realizada', undefined, {
-          duration: 1500,
+  
+
+  pujar(Subasta) {
+    this.Id = localStorage.getItem('Id');
+    const PujaSubasta = new Puja(undefined,undefined,undefined,undefined,undefined,undefined,"","","");
+    PujaSubasta.Id_Cliente=this.Id;
+    PujaSubasta.Id_Subasta=parseInt(Subasta.Id);
+    PujaSubasta.Puja=this.PujaSubastaModel.Puja;
+    
+    if(Subasta.PrecioMin < PujaSubasta.Puja){
+      this.homeService.addPuja(PujaSubasta).subscribe((datos) => {
+        if(datos=="Update"){
+          this.snackBar.open('Puja Actualizada', undefined, {
+            duration: 2000,
+            horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition
+          });
+        }
+        if(datos=="Insert"){
+          this.snackBar.open('Puja Realizada', undefined, {
+            duration: 2000,
+            horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition
+          });
+        }
+        $('#color').css("background-color", "ForestGreen");
+        this.obtenerSubasta();
+        
+        
+      })
+    }else{
+      this.snackBar.open('La puja es menor a lo requerido para pujar', undefined, {
+        duration: 2000,
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition
       });
     }
-    })
+    
+    
     
   }
   getErrorMessage(field:string):string{

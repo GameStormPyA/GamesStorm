@@ -42,6 +42,7 @@ import { AgregarCompraJuegoComponent } from './Admin/panel/CompraJuego/agregar-c
 import { AgregarCompraAccesorioComponent } from './Admin/panel/CompraAccesorio/agregar-compra-accesorio/agregar-compra-accesorio.component';
 import { EditarCompraAccesorioComponent } from './Admin/panel/CompraAccesorio/editar-compra-accesorio/editar-compra-accesorio.component';
 import { ListCompraAccesorioComponent } from './Admin/panel/CompraAccesorio/list-compra-accesorio/list-compra-accesorio.component';
+import { ListarJuegosComponent } from './body/listar-juegos/listar-juegos.component';
 
 const routes: Routes = [
   { path: "Home" , component: HomeComponent},
@@ -86,6 +87,7 @@ const routes: Routes = [
   { path: "Panel/ComprarAccesorio" , component: ListCompraAccesorioComponent},
   { path: "Panel/ComprarAccesorio/Agregar" , component: AgregarCompraAccesorioComponent},
   { path: "Panel/ComprarAccesorio/Editar/:Id_Accesorios/:Id_User/:Id_Plaforma" , component: EditarCompraAccesorioComponent},
+  { path: "Juegos" , component: ListarJuegosComponent},
   { path: "", redirectTo: "/Home", pathMatch: "full" },
   { path: "**", redirectTo: "/Home" }
 ];

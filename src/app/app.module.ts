@@ -10,6 +10,10 @@ import { HeadComponent } from './head/head.component';
 //clases
 import { HomeService} from './servicios/home.service';
 import { AdminService} from './servicios/admin.service';
+import { JuegosService} from './servicios/juegos.service';
+import { GestionCarritoService } from './servicios/gestion-carrito.service';
+import { FiltrarService} from './servicios/filtrar.service';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //material
 import { MatSliderModule } from '@angular/material/slider';
@@ -19,7 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';  
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectFilterModule } from 'mat-select-filter';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule} from '@angular/material/badge';
@@ -27,6 +31,7 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { MatCardModule} from '@angular/material/card';
 import { MatRadioModule} from '@angular/material/radio';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+
 
 //form
 import { FormsModule } from '@angular/forms';
@@ -83,6 +88,10 @@ import { AgregarCompraAccesorioComponent } from './Admin/panel/CompraAccesorio/a
 import { EditarCompraAccesorioComponent } from './Admin/panel/CompraAccesorio/editar-compra-accesorio/editar-compra-accesorio.component';
 import { ListCompraAccesorioComponent } from './Admin/panel/CompraAccesorio/list-compra-accesorio/list-compra-accesorio.component';
 import { from } from 'rxjs';
+import { ListarJuegosComponent } from './body/listar-juegos/listar-juegos.component';
+import { NgxPrettyCheckboxModule } from 'ngx-pretty-checkbox';
+import { PaginatePipe } from './pipes/paginate.pipe';
+import { CustomMatPaginatorIntl } from './paginator-es';
 
 @NgModule({
   declarations: [
@@ -137,7 +146,9 @@ import { from } from 'rxjs';
     AgregarCompraJuegoComponent,
     AgregarCompraAccesorioComponent,
     EditarCompraAccesorioComponent,
-    ListCompraAccesorioComponent
+    ListCompraAccesorioComponent,
+    ListarJuegosComponent,
+    PaginatePipe,
   ],
   imports: [
     BrowserModule,
@@ -164,10 +175,18 @@ import { from } from 'rxjs';
     MatCardModule,
     MatRadioModule,
     NgxMatFileInputModule,
+    NgxPrettyCheckboxModule,
   ],
   providers: [
     HomeService,
-    AdminService
+    AdminService,
+    JuegosService,
+    GestionCarritoService,
+    {
+      provide: MatPaginatorIntl, 
+      useClass: CustomMatPaginatorIntl
+    },
+    FiltrarService
   ],
   bootstrap: [AppComponent]
 })

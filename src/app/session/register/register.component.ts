@@ -12,8 +12,11 @@ import * as $ from 'jquery';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
+
+  public id ;
 
   LoginRegistro = this.formBuild.group({
     Nombre: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]],
@@ -34,7 +37,6 @@ export class RegisterComponent implements OnInit {
   RegistroModel = new Usuario(undefined,'','','','','','',undefined,'',undefined);
 
   onSubmit() {
-    console.log(this.RegistroModel);
     this.sessionService.Registrar(this.RegistroModel).subscribe((datos) => {      
       if(datos=="Existe"){
         this.snackBar.open('Correo electronico ya registrado', undefined, {
@@ -49,6 +51,7 @@ export class RegisterComponent implements OnInit {
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });
+        this.grabarLocalStorage();
        this.volver();
       }
     })
@@ -57,6 +60,16 @@ export class RegisterComponent implements OnInit {
 
   volver() {
     this.router.navigate(['/Home']);
+  }
+
+  grabarLocalStorage(){
+    this.sessionService.getUser(this.RegistroModel).subscribe((datos) => {
+       this.id=datos;
+       localStorage.setItem("Id",this.id.Id),
+       localStorage.setItem("admi",this.id.Administrador)
+    }
+
+    );
   }
 
   getErrorMessage(field:string):string{

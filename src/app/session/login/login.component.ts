@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
+  public id ;
+
   Login = this.formBuild.group({
     Correo: ['',[Validators.required, Validators.email]],
     Contrasena: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]],
@@ -59,17 +61,9 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/Home']);
   }
 
-  public id ;
-
   grabarLocalStorage(){
-    //console.log(this.LoginModel);
-
     this.sessionService.getUser(this.LoginModel).subscribe((datos) => {
-       /*localStorage.setItem("Id",datos[0].Id),
-       localStorage.setItem("admi",datos[0].Administrador),*/
        this.id=datos;
-       console.log(datos);
-       console.log("++"+this.id.Id);
        localStorage.setItem("Id",this.id.Id),
        localStorage.setItem("admi",this.id.Administrador)
     }

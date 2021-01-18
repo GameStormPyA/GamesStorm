@@ -9,7 +9,7 @@ export class Puja {
         public Fecha: Date,
         public Hora: Time,
         public Nombre_Cliente: string,
-        public Nombre_juego:string,
+        public Nombre_Juego:string,
         public Nombre_Plataforma:string
 
     ){}

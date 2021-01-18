@@ -1,0 +1,99 @@
+<div class="row ">
+    <div class="col-lg-2"> 
+        <div class="DivGenero col-lg-12 col-md-3 d-none d-sm-none  d-md-block  mat-elevation-z8 mt-2" >
+            <div class="d-flex justify-content-center mt-2">
+                <button class="Genero mt-2 " >
+                    <h1>
+                        <b>Genero</b>
+                    </h1>
+                </button>  
+            </div> 
+            <div class="DivcheckboxGenero" >
+                <li *ngFor="let Genero of ListGenero" >
+                    <p><input type="checkbox" [value]="Genero.Id" (change)="filtrarGenero($event)" > <b> {{Genero.Nombre}}</b></p>
+                </li>
+            </div>   
+        </div>
+        <div class="col-lg-2 col-md-3 d-block d-sm-block  d-md-none border mat-elevation-z8 mt-2">
+            <div class="d-flex justify-content-center mt-2">
+                <button class="Genero" >
+                    <h1>
+                        <b>Genero</b>
+                    </h1>
+                </button>  
+            </div>
+            <div class="DivcheckboxGenero" >
+                <div class="row">
+                    <div *ngFor="let Genero of ListGenero" class="ml-4">
+                        <input type="checkbox" [value]="Genero.Id" (change)="filtrarGenero($event)" class="ml-2"> <b> {{Genero.Nombre}}</b>
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <!--Filtro plataforma-->
+        <div class="DivPlataforma col-lg-12 col-md-3 d-none d-sm-none  d-md-block  mat-elevation-z8 mt-2" >
+            <div class="d-flex justify-content-center mt-2">
+                <button class="Plataforma mt-2 " >
+                    <h1>
+                        <b>Plataforma</b>
+                    </h1>
+                </button>  
+            </div> 
+            <div class="DivcheckboxPlataforma" >
+                <li *ngFor="let Plataforma of ListPlataforma" >
+                    <p><input type="checkbox" [value]="Plataforma.Id" (change)="filtrarPlataforma($event)" > <b> {{Plataforma.Nombre}}</b></p>
+                </li>
+            </div>   
+        </div>
+        <div class="col-lg-2 col-md-3 d-block d-sm-block  d-md-none border mat-elevation-z8 mt-2 mb-4">
+            <div class="d-flex justify-content-center mt-2">
+                <button class="Plataforma" >
+                    <h1>
+                        <b>Plataforma</b>
+                    </h1>
+                </button>  
+            </div>
+            <div class="DivcheckboxPlataforma" >
+                <div class="row">
+                    <div *ngFor="let Plataforma of ListPlataforma" class="ml-4">
+                        <input type="checkbox" [value]="Plataforma.Id" (change)="filtrarPlataforma($event)" class="ml-2"> <b> {{Plataforma.Nombre}}</b>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+    <div class="col-10 border">
+        
+        <div class="row">
+            <div class="col-lg-3"  *ngFor="let Juego of datos | paginate:page_size:page_number">
+                
+                    <mat-card class="border mt-2" >
+                        <mat-card-header>
+                            <mat-card-title><b>{{ Juego.Nombre_Juego }}</b></mat-card-title>
+                            <mat-card-subtitle>{{ Juego.Nombre_Plataforma }}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <img src="{{Juego.Portada}}" alt="Foto juego {{Juego.Nombre_Juego}} de {{ Juego.Nombre_Plataforma }}" class="img">
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h2 class="ml-2"> <b>{{ Juego.Precio }}€</b> </h2>
+                                </div>
+                                <div class="col-6 d-flex justify-content-end">
+                                    <button mat-flat-button color="accent" (click)="comprar(Juego)" >Añadir</button>
+                                </div>
+                            </div>     
+                        </mat-card-actions>
+                    </mat-card>    
+                
+                
+            </div>          
+        </div>
+        <mat-paginator [length]="datos.length"
+               [pageSize]="page_size"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="handlePage($event)">
+        </mat-paginator> 
+    </div>
+</div>

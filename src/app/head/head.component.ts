@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-head',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeadComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+  
+
+  public Id:any ;
+  public admin:any;
 
   ngOnInit(): void {
+    
+    this.Id = localStorage.getItem('Id');
+    this.admin = localStorage.getItem('admi');
+    //window.location.reload();
   }
-
+  Cerrar(){
+    localStorage.removeItem('Id');
+    localStorage.removeItem('admi');
+    window.location.reload();
+  }
 }

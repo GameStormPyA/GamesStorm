@@ -9,25 +9,29 @@
             <mat-icon>account_circle</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="MenuPerfil">
-            <button mat-menu-item class="DivProfile" [routerLink]="['/Login']">   
+            <button mat-menu-item class="DivProfile" *ngIf="!admin && !Id " [routerLink]="['/Login']">   
                 <mat-icon  class="IconosPerfile">login</mat-icon>
-                <span class="TextoMenuPerfile"><b>Iniciar sesion</b></span>
+                <span class="TextoMenuPerfile ml-1"><b>Iniciar sesion</b></span>
             </button>
-            <button mat-menu-item class="DivProfile" [routerLink]="['/Registro']">   
+            <button mat-menu-item class="DivProfile" *ngIf="!admin && !Id " [routerLink]="['/Registro']">   
               <mat-icon  class="IconosPerfile">person_add_alt_1</mat-icon>
-              <span class="TextoMenuPerfile"><b>Registrarse </b></span>
+              <span class="TextoMenuPerfile ml-1"><b>Registrarse </b></span>
             </button>
-            <button mat-menu-item class="DivProfile" >   
+            <button mat-menu-item class="DivProfile"  *ngIf="admin && Id ">   
               <mat-icon  class="IconosPerfile">settings</mat-icon>
-              <span class="TextoMenuPerfile"><b>Configurar Perfil</b></span>
+              <span class="TextoMenuPerfile ml-1"><b>Configurar Perfil</b></span>
             </button>
-            <button mat-menu-item class="DivProfile" [routerLink]="['/Panel']" >   
+            <button mat-menu-item class="DivProfile" *ngIf="admin === '1'" [routerLink]="['/Panel']" >   
               <mat-icon  class="IconosPerfile">admin_panel_settings</mat-icon>
-              <span class="TextoMenuPerfile"><b>Configuración Administrador</b></span>
+              <span class="TextoMenuPerfile ml-1"><b>Configuración Administrador</b></span>
             </button>
             <button mat-menu-item class="DivProfile" [routerLink]="['/Carrito']">
               <mat-icon matBadge="0" class="IconosPerfileCarrito">shopping_cart</mat-icon>
-              <span class="TextoMenuPerfile"><b>Carrito</b></span>
+              <span class="TextoMenuPerfile ml-1"><b>Carrito</b></span>
+            </button>
+            <button mat-menu-item class="DivProfile" (click)="Cerrar()"  *ngIf="admin && Id ">
+              <mat-icon class="IconosPerfileCarrito">exit_to_app</mat-icon>
+              <span class="TextoMenuPerfile ml-1"><b>Cerrar Sesion</b></span>
             </button>
         </mat-menu>
      </div>
