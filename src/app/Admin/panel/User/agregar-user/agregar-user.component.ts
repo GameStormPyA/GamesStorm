@@ -20,11 +20,8 @@ export class AgregarUserComponent implements OnInit {
 LoginUser = this.formBuild.group({
   Nombre: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]],
   Apellido: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]],
-  Cuenta: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(50)]],
-  Direccion: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(50)]],
   Correo: ['',[Validators.required, Validators.email]],
   Edad: ['',[Validators.required,Validators.min(0),Validators.max(100)]],
-  Logo: [''],
   Contrasena: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]],
   Administrador: ['',[Validators.required]],
  });
@@ -37,11 +34,9 @@ LoginUser = this.formBuild.group({
  ngOnInit() {
  }
  
- UserModel = new User(undefined,"","","","","",undefined,"","",false);
+ UserModel = new User(undefined,"","","",undefined,"",false);
 
  onSubmit() {
-  console.log(this.UserModel);
-  
   this.adminService.addUser(this.UserModel).subscribe((datos) => {      
     if(datos=="Existe"){
       this.snackBar.open('Correo electronico ya registrado', undefined, {
@@ -76,9 +71,10 @@ LoginUser = this.formBuild.group({
   if(field=="Nombre" || field=="Apellido" ){
     message='Caratcter Minimo 2 y Maximo 20';
   }
-  if(field=="Cuenta" || field=="Direccion" ){
-    message='Caratcter Minimo 2 y Maximo 50';
+  if(field=="Correo" ){
+    message='Debes introducir un correo electronico ';
   }
+
   if(this.LoginUser.get(field)?.errors.required){
      message='debes rellenar el campo';
   }

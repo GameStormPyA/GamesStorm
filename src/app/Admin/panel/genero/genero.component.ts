@@ -4,9 +4,9 @@ import { AdminService } from '../../../servicios/admin.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from "../../../dialogo-confirmacion/dialogo-confirmacion.component"
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-genero',
@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./genero.component.css']
 })
 export class GeneroComponent implements OnInit {
+  
   public disabled : boolean = false;
   public listaGenero: Genero[]=[];
   public listaEditGenero: Genero;
@@ -35,6 +36,18 @@ export class GeneroComponent implements OnInit {
   ngOnInit() {
     this.obtenerGenero();
   }
+  //Buscador de juegos 
+   filterPost = "";
+ 
+
+   // paginacion de los Juegos
+   handlePage(e: PageEvent){
+     this.page_size = e.pageSize
+     this.page_number = e.pageIndex + 1
+   }
+   page_size:number = 6 ;
+   page_number = 1 ;
+   pageSizeOptions = [6,12,24]
 
   GeneroModel = new Genero(undefined,'');
   GeneroEditModel = new Genero(undefined,'');
@@ -77,7 +90,6 @@ export class GeneroComponent implements OnInit {
       this.snackBar.open('Genero guardada', undefined, {
         duration: 1500,
       });
-      this.obtenerGenero();
     })
   }
   //Update

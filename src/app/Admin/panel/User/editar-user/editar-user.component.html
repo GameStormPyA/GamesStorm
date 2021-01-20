@@ -23,24 +23,6 @@
                 </div>
                 <div class="col-lg-3 col-md-6 d-flex justify-content-center">
                     <mat-form-field>
-                        <input matInput  [(ngModel)]="userSelect.Cuenta" type="text" placeholder="Cuenta"  formControlName="Cuenta">
-                        <mat-error *ngIf="isValidField('Cuenta')" >
-                            {{ getErrorMessage("Cuenta") }} 
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
-                    <mat-form-field>
-                        <input matInput  [(ngModel)]="userSelect.Direccion" type="text" placeholder="Direccion"  formControlName="Direccion">
-                        <mat-error *ngIf="isValidField('Direccion')" >
-                            {{ getErrorMessage("Direccion") }} 
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row col-12">
-                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
-                    <mat-form-field>
                         <input matInput  [(ngModel)]="userSelect.Correo" type="text" placeholder="Correo"  formControlName="Correo" id="Correo">
                         <mat-error *ngIf="isValidField('Correo')" >
                             {{ getErrorMessage("Correo") }} 
@@ -51,13 +33,20 @@
                     <mat-form-field>
                         <input matInput  [(ngModel)]="userSelect.Edad" type="number" placeholder="Edad"  formControlName="Edad">
                         <mat-error *ngIf="isValidField('Edad')" >
-                            {{ getErrorMessage("Edad") }} 
+                            {{ getErrorMessage("Edad") }}
                         </mat-error>
                     </mat-form-field>
                 </div>
+            </div>
+            <div class="row col-12">
+                
                 <div class="col-lg-3 col-md-6 d-flex justify-content-center">
-                    <mat-radio-group [(ngModel)]="userSelect.Administrador"  formControlName="Administrador" ><b><u>Administrador</u></b><br>
-                        <mat-radio-button value="false"  >No</mat-radio-button> 
+                    <mat-radio-group [(ngModel)]="userSelect.Administrador"  formControlName="Administrador" >
+                        <b>
+                            <u>Administrador</u>
+                        </b>
+                        <br>
+                        <mat-radio-button value="false" >No</mat-radio-button> 
                         <mat-radio-button value="true" class="ml-2">Si</mat-radio-button>
                         <mat-error *ngIf="isValidField('Administrador')" >
                             {{ getErrorMessage("Administrador") }} 

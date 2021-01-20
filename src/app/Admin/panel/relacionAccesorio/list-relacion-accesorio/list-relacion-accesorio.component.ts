@@ -4,8 +4,7 @@ import { AdminService } from '../../../../servicios/admin.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from "../../../../dialogo-confirmacion/dialogo-confirmacion.component"
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-list-relacion-accesorio',
@@ -26,6 +25,17 @@ export class ListRelacionAccesorioComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerRelacionAccesorio();
   }
+  //Buscador de juegos 
+  filterPost = "";
+  // paginacion de los Juegos
+  handlePage(e: PageEvent){
+    this.page_size = e.pageSize
+    this.page_number = e.pageIndex + 1
+  }
+  page_size:number = 15 ;
+  page_number = 1 ;
+  pageSizeOptions = [15,30,45]
+
 
   eliminarRelacionAccesorio(relacionAccesorio: RelacionAccesorio) {
     this.dialogo
@@ -50,7 +60,7 @@ export class ListRelacionAccesorioComponent implements OnInit {
 
 
   obtenerRelacionAccesorio(){
-    return this.adminService.getRelacionAccesorio().subscribe((listaRelacionAccesorio: RelacionAccesorio[]) => this.listaRelacionAccesorio = listaRelacionAccesorio);
+    this.adminService.getRelacionAccesorio().subscribe(datos => this.listaRelacionAccesorio = datos);
   }
 
 }

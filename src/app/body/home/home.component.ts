@@ -9,6 +9,13 @@ import { Router } from '@angular/router';
 import * as countdown from 'countdown';
 import { Time } from '@angular/common';
 import * as $ from 'jquery';
+import { GestionCarritoService } from '../../servicios/gestion-carrito.service';
+import { ProductosService } from '../../servicios/productos.service';
+import { CarritoCompra } from '../../Class/carrito-compra';
+import { JuegosList } from '../../Class/juegos-list';
+import { AccesoriosList } from '../../Class/accesorios-list';
+import { HeadComponent} from '../../head/head.component';
+
 
 interface Tiempo{
   hours: number,
@@ -27,7 +34,10 @@ export class HomeComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   public TiempoRestante : Tiempo ;
-  public TiempId : number = null;
+  public TiempId : number ;
+
+  datos: JuegosList[] = [];
+  datosAccesorios: AccesoriosList[] = [];
   
   public listaSubastas: Subasta[]=[];
 
@@ -51,7 +61,9 @@ export class HomeComponent implements OnInit {
   constructor(private homeService:HomeService,
               private snackBar: MatSnackBar,
               private router: Router,
-              private formBuild :FormBuilder) { }
+              private formBuild :FormBuilder,
+              private gestionCarritoService:GestionCarritoService,
+              private productosService:ProductosService) { }
 
   slides = [{'image': '../../../assets/image/Carrusel/fifa21.jpg','Text':'FIFA 21'},
             {'image': '../../../assets/image/Carrusel/nfl.jpg','Text':'NFL 21'},
@@ -64,6 +76,8 @@ export class HomeComponent implements OnInit {
     this.admin = localStorage.getItem('admi');
 
     this.obtenerSubasta();
+    this.getJuegos();
+    this.getAccesorios();
 
     setInterval(() => {
       this.obtenerSubasta(); 
@@ -103,6 +117,33 @@ export class HomeComponent implements OnInit {
     return this.homeService.getSubastaActivasUno().subscribe((listaSubastas: Subasta[]) => this.listaSubastas = listaSubastas);
   }
 
+  getJuegos(){
+    this.productosService.getListaJuegos().subscribe(datos =>{ 
+      this.datos = datos.sort(function (o1,o2) {
+        if (o1.Stock < o2.Stock) { 
+          return 1;
+        } else if (o1.Stock > o2.Stock) {
+          return -1;
+        } 
+        return 0;
+      });
+    
+    });
+  }
+
+  getAccesorios(){
+    this.productosService.getListaAccesorios().subscribe(datos =>{ 
+      this.datosAccesorios = datos.sort(function (o1,o2) {
+        if (o1.Stock < o2.Stock) { 
+          return 1;
+        } else if (o1.Stock > o2.Stock) {
+          return -1;
+        } 
+        return 0;
+      });
+    
+    });
+  }
   
 
   pujar(Subasta) {
@@ -140,10 +181,40 @@ export class HomeComponent implements OnInit {
         verticalPosition: this.verticalPosition
       });
     }
-    
-    
-    
   }
+  
+  comprar(event){
+
+    const articulo=new CarritoCompra();
+    
+    if(event.Id_Juego==null){
+      articulo.Id_Accesorios=event.Id_Accesorios;
+      articulo.Id_Plataforma=event.Id_Plataforma;
+      articulo.Nombre_Accesorios=event.Nombre_Accesorios;
+      articulo.Nombre_Plataforma=event.Nombre_Plataforma;
+      articulo.Edicion=event.Edicion;
+      articulo.Portada=event.Portada;
+      articulo.Cantidad= 1;
+      articulo.Precio= event.Precio;
+
+    }else{
+      articulo.Id_Juego=event.Id_Juego;
+      articulo.Id_Plataforma=event.Id_Plataforma;
+      articulo.Nombre_Juego=event.Nombre_Juego;
+      articulo.Nombre_Plataforma=event.Nombre_Plataforma;
+      articulo.Edicion=event.Edicion;
+      articulo.Portada=event.Portada;
+      articulo.Cantidad= 1;
+      articulo.Precio= event.Precio;
+    }
+
+      const respuesta=this.gestionCarritoService.anadirEnCarrito(articulo);
+    if (respuesta!="OK") {
+      //this.mensaje = "OPERACION NO REALIZADA. INTENTELO OTRA VEZ";
+      alert("OPERACION NO REALIZADA. INTENTELO OTRA VEZ");
+    }
+  }
+
   getErrorMessage(field:string):string{
     let message ;
     if(this.SubastaHome.get(field)?.errors.required){

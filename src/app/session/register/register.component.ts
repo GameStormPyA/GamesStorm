@@ -3,8 +3,9 @@ import { MatSnackBar,MatSnackBarHorizontalPosition,MatSnackBarVerticalPosition }
 import { FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SessionService } from '../../servicios/session.service';
-import { Usuario } from '../../usuario';
+import { Usuario } from '../../Class/usuario';
 import * as $ from 'jquery';
+import { GestionCarritoService } from '../../servicios/gestion-carrito.service';
 
 @Component({
   selector: 'app-register',
@@ -29,17 +30,28 @@ export class RegisterComponent implements OnInit {
   constructor(private router: Router,
               private sessionService: SessionService,
               private snackBar:MatSnackBar,
-              private formBuild :FormBuilder) { }
+              private formBuild :FormBuilder,
+              private gestionCarritoService:GestionCarritoService) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("Id") !== null){
+      this.volver();
+    }
   }
 
-  RegistroModel = new Usuario(undefined,'','','','','','',undefined,'',undefined);
+  RegistroModel = new Usuario(undefined,'','','','',undefined,undefined);
 
   onSubmit() {
     this.sessionService.Registrar(this.RegistroModel).subscribe((datos) => {      
       if(datos=="Existe"){
         this.snackBar.open('Correo electronico ya registrado', undefined, {
+          duration: 2000,
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition
+        });
+        $('#Correo').css('border','1px solid red');
+      }if(datos=="error"){
+        this.snackBar.open('error', undefined, {
           duration: 2000,
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition
@@ -52,7 +64,7 @@ export class RegisterComponent implements OnInit {
           verticalPosition: this.verticalPosition,
         });
         this.grabarLocalStorage();
-       this.volver();
+        this.volver();
       }
     })
     
@@ -68,7 +80,6 @@ export class RegisterComponent implements OnInit {
        localStorage.setItem("Id",this.id.Id),
        localStorage.setItem("admi",this.id.Administrador)
     }
-
     );
   }
 

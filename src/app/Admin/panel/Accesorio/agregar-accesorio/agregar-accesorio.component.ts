@@ -32,7 +32,7 @@ LoginAccesorio = this.formBuild.group({
              private formBuild :FormBuilder) {}
 
  ngOnInit() {
-   this.obtenerCategoria();
+   this.obtenerCategorias();
  }
  
  AccesorioModel = new Accesorio(undefined,"","","",undefined,undefined,undefined,"");
@@ -52,10 +52,7 @@ LoginAccesorio = this.formBuild.group({
         duration: 2000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
-        
-        
       });
-      console.log(datos);
       this.volver();
     }
   })
@@ -64,9 +61,9 @@ LoginAccesorio = this.formBuild.group({
    this.router.navigate(['/Panel/Accesorio']);
  }
 
- obtenerCategoria(){
-  return this.adminService.getCategoria().subscribe((listaCategoria: Categoria[]) => this.listaCategoria = listaCategoria);
-}
+ obtenerCategorias(){
+  this.adminService.getCategoria().subscribe(datos => this.listaCategoria = datos); 
+  }
 
  getErrorMessage(field:string):string{
    let message ;

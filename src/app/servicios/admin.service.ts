@@ -43,8 +43,8 @@ export class AdminService {
     return this.http.post(`${this.baseUrl}/EditPlataforma.php`, plataforma);
   }
   //Categoria
-  getCategoria(){
-    return this.http.get(`${this.baseUrl}/getCategoria.php`);
+  getCategoria():Observable<Categoria[]>{
+    return this.http.get<Categoria[]>(`${this.baseUrl}/getCategoria.php`);
   }
   DeleteCategoria(categoria: Categoria){
     return this.http.delete(`${this.baseUrl}/DeleteCategoria.php?Id=${categoria.Id}`);
@@ -69,8 +69,8 @@ export class AdminService {
     return this.http.post(`${this.baseUrl}/EditGenero.php`, genero);
   }
   //User
-  getUser(){
-    return this.http.get(`${this.baseUrl}/getUser.php`);
+  getUser():Observable<User[]>{
+    return this.http.get<User[]>(`${this.baseUrl}/getUser.php`);
   }
   DeleteUser(user: User){
     return this.http.delete(`${this.baseUrl}/DeleteUser.php?Id=${user.Id}`);
@@ -81,12 +81,12 @@ export class AdminService {
   EditUser(user: User) {
     return this.http.post(`${this.baseUrl}/EditUser.php`, user);
   }
-  getUserSelecionada(Id: string | number ){
-    return this.http.get(`${this.baseUrl}/getUserSelecionada.php?Id=${Id}`);
+  getUserSelecionada(Id: string | number ):Observable<User>{
+    return this.http.get<User>(`${this.baseUrl}/getUserSelecionada.php?Id=${Id}`);
   }
   //juego
-  getJuegos(){
-    return this.http.get(`${this.baseUrl}/getJuegos.php`);
+  getJuegos():Observable<Juego[]>{
+    return this.http.get<Juego[]>(`${this.baseUrl}/getJuegos.php`);
   }
   DeleteJuego(juego: Juego){
     return this.http.delete(`${this.baseUrl}/DeleteJuego.php?Id=${juego.Id}`);
@@ -101,8 +101,8 @@ export class AdminService {
     return this.http.get(`${this.baseUrl}/getJuegoSelecionada.php?Id=${Id}`);
   }
   //RelacionJuego
-  getRelacionJuego(){
-    return this.http.get(`${this.baseUrl}/getRelacionJuego.php`);
+  getRelacionJuego():Observable<RelacionJuego[]>{
+    return this.http.get<RelacionJuego[]>(`${this.baseUrl}/getRelacionJuego.php`);
   }
   DeleteRelacionJuego(relacionJuego: RelacionJuego){
     return this.http.delete(`${this.baseUrl}/DeleteRelacionJuego.php?Id_Juego=${relacionJuego.Id_Juego}&Id_Plataforma=${relacionJuego.Id_Plataforma}`);
@@ -117,8 +117,8 @@ export class AdminService {
     return this.http.get(`${this.baseUrl}/getRelacionJuegoSelecionada.php?Id_Juego=${Id_Juego}&Id_Plataforma=${Id_Plataforma}`);
   }
    //Accesorio
-   getAccesorio(){
-    return this.http.get(`${this.baseUrl}/getAccesorios.php`);
+   getAccesorio():Observable<Accesorio[]>{
+    return this.http.get<Accesorio[]>(`${this.baseUrl}/getAccesorios.php`);
   }
   DeleteAccesorio(accesorio: Accesorio){
     return this.http.delete(`${this.baseUrl}/DeleteAccesorios.php?Id=${accesorio.Id}`);
@@ -133,8 +133,8 @@ export class AdminService {
     return this.http.get(`${this.baseUrl}/getAccesorioSelecionada.php?Id=${Id}`);
   }
   //RelacionAccesorio
-  getRelacionAccesorio(){
-    return this.http.get(`${this.baseUrl}/getRelacionAccesorio.php`);
+  getRelacionAccesorio():Observable<RelacionAccesorio[]>{
+    return this.http.get<RelacionAccesorio[]>(`${this.baseUrl}/getRelacionAccesorio.php`);
   }
   DeleteRelacionAccesorio(relacionAccesorio: RelacionAccesorio){
     return this.http.delete(`${this.baseUrl}/DeleteRelacionAccesorio.php?Id_Accesorio=${relacionAccesorio.Id_Accesorio}&Id_Plataforma=${relacionAccesorio.Id_Plataforma}`);
@@ -213,8 +213,8 @@ export class AdminService {
     return this.http.get(`${this.baseUrl}/getComentarioAccesorioSelecionada.php?Id_Accesorio=${Id_Accesorio}&Id_User=${Id_User}`);
   }
   //CompraAccesorio
-  getCompraAccesorio(){
-    return this.http.get(`${this.baseUrl}/getCompraAccesorio.php`);
+  getCompraAccesorio():Observable<CompraAccesorio[]>{
+    return this.http.get<CompraAccesorio[]>(`${this.baseUrl}/getCompraAccesorio.php`);
   }
   DeleteCompraAccesorio(compraAccesorio: CompraAccesorio){
     return this.http.delete(`${this.baseUrl}/DeleteCompraAccesorio.php?Id_Accesorio=${compraAccesorio.Id_Accesorios}&Id_User=${compraAccesorio.Id_User}&Id_Plaforma=${compraAccesorio.Id_Plaforma}`);
@@ -229,8 +229,8 @@ export class AdminService {
     return this.http.get(`${this.baseUrl}/getCompraAccesorioSelecionada.php?Id_Accesorios=${Id_Accesorios}&Id_User=${Id_User}&Id_Plaforma=${Id_Plaforma}`);
   }
    //CompraJuego
-   getCompraJuego(){
-    return this.http.get(`${this.baseUrl}/getCompraJuego.php`);
+   getCompraJuego():Observable<CompraJuego[]>{
+    return this.http.get<CompraJuego[]>(`${this.baseUrl}/getCompraJuego.php`);
   }
   DeleteCompraJuego(compraJuego: CompraJuego){
     return this.http.delete(`${this.baseUrl}/DeleteCompraJuego.php?Id_Juego=${compraJuego.Id_Juego}&Id_User=${compraJuego.Id_User}&Id_Plaforma=${compraJuego.Id_Plaforma}`);
@@ -244,4 +244,13 @@ export class AdminService {
   getCompraJuegoSelecionada(Id_Juego: string | number , Id_User: string | number, Id_Plaforma: string | number){
     return this.http.get(`${this.baseUrl}/getCompraJuegoSelecionada.php?Id_Juego=${Id_Juego}&Id_User=${Id_User}&Id_Plaforma=${Id_Plaforma}`);
   }
+
+  //COMRA CARRITO
+  addCompraJuegoCarrito(compraJuego: CompraJuego){
+    return this.http.post(`${this.baseUrl}/AgregarCompraJuegoCarrito.php`, compraJuego);
+  }
+  addCompraAccesorioCarrito(CompraAccesorio: CompraAccesorio){
+    return this.http.post(`${this.baseUrl}/AgregarCompraAccesorioCarrito.php`, CompraAccesorio);
+  }
+  
 }

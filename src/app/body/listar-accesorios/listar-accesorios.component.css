@@ -1,0 +1,33 @@
+li{
+    list-style:none;
+}
+.DivCategoria{
+  border-radius: 0px 30px 30px 0px;
+}
+.Categoria{
+  outline: none;
+  border: none;
+  background: none;
+}
+
+.DivPlataforma{
+  border-radius: 0px 30px 30px 0px;
+}
+.Plataforma{
+  outline: none;
+  border: none;
+  background: none;
+}
+
+.img{
+  width:100%;
+  border: 2px solid rgb(80, 80, 80);
+  height: 100%;
+}
+.BotonFiltoSelect{
+  opacity: 0.8;
+  outline: none;
+}
+.icono{
+  font-size: 18px;
+}

@@ -4,8 +4,8 @@ import { AdminService } from '../../../../servicios/admin.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from "../../../../dialogo-confirmacion/dialogo-confirmacion.component"
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { PageEvent } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-list-compra-accesorio',
@@ -26,6 +26,19 @@ export class ListCompraAccesorioComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerCompraAccesorio();
   }
+    //Buscador de juegos 
+    filterPost = "";
+ 
+
+    // paginacion de los Juegos
+    handlePage(e: PageEvent){
+      this.page_size = e.pageSize
+      this.page_number = e.pageIndex + 1
+    }
+    page_size:number = 15 ;
+    page_number = 1 ;
+    pageSizeOptions = [15,30,45]
+ 
 
   eliminarCompraAccesorio(compraAccesorio: CompraAccesorio) {
     this.dialogo
@@ -48,7 +61,7 @@ export class ListCompraAccesorioComponent implements OnInit {
 
 
   obtenerCompraAccesorio(){
-    return this.adminService.getCompraAccesorio().subscribe((listaCompraAccesorio: CompraAccesorio[]) => this.listaCompraAccesorio = listaCompraAccesorio);
+    this.adminService.getCompraAccesorio().subscribe(datos => this.listaCompraAccesorio = datos);
   }
 
 }

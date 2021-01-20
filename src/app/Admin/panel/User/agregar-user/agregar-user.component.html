@@ -23,24 +23,6 @@
                 </div>
                 <div class="col-lg-3 col-md-6 d-flex justify-content-center">
                     <mat-form-field>
-                        <input matInput  [(ngModel)]="UserModel.Cuenta" type="text" placeholder="Cuenta"  formControlName="Cuenta">
-                        <mat-error *ngIf="isValidField('Cuenta')" >
-                            {{ getErrorMessage("Cuenta") }} 
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
-                    <mat-form-field>
-                        <input matInput  [(ngModel)]="UserModel.Direccion" type="text" placeholder="Direccion"  formControlName="Direccion">
-                        <mat-error *ngIf="isValidField('Direccion')" >
-                            {{ getErrorMessage("Direccion") }} 
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row col-12">
-                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
-                    <mat-form-field>
                         <input matInput  [(ngModel)]="UserModel.Correo" type="text" placeholder="Correo"  formControlName="Correo" id="Correo">
                         <mat-error *ngIf="isValidField('Correo')" >
                             {{ getErrorMessage("Correo") }} 
@@ -55,15 +37,9 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
-                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
-                    <!-- <mat-form-field>
-                       <input matInput  [(ngModel)]="UserModel.Logo" type="text" placeholder="Logo"  formControlName="Logo">
-                        <mat-error *ngIf="isValidField('Logo')" >
-                            {{ getErrorMessage("Logo") }} 
-                        </mat-error></mat-form-field>-->
-                        <input [(ngModel)]="UserModel.Logo" type="file"  formControlName="Logo">
-                    
-                </div>
+            </div>
+            <div class="row col-12">
+                
                 <div class="col-lg-3 col-md-6 d-flex justify-content-center">
                     <mat-form-field>
                         <input matInput [(ngModel)]="UserModel.Contrasena"  type="password" placeholder="Contraseña" formControlName="Contrasena">
@@ -72,9 +48,6 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
-                
-            </div>
-            <div class=" row col-12">
                 <div class="col-lg-3 col-md-6 d-flex justify-content-center">
                     <mat-radio-group [(ngModel)]="UserModel.Administrador"   formControlName="Administrador"><b><u>Administrador</u></b><br>
                         <mat-radio-button value="false" >No</mat-radio-button> 
@@ -84,6 +57,8 @@
                         </mat-error>
                     </mat-radio-group>
                 </div>
+            </div>
+            <div class=" row col-12">
                 <div class="col-lg-3 col-md-0"></div>
                 <div class="col-lg-6 col-md-6 ml-auto p-2 pr-3 d-flex justify-content-end">
                 <button [disabled]="LoginUser.invalid" type="submit" mat-flat-button color="accent">Guardar</button>

@@ -1,21 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { JuegosService } from '../../servicios/juegos.service';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
+import { ProductosService } from '../../servicios/productos.service';
 import { GestionCarritoService } from '../../servicios/gestion-carrito.service';
-import { FiltrarService } from '../../servicios/filtrar.service';
 import { AdminService } from '../../servicios/admin.service';
 import { ActivatedRoute,Router} from '@angular/router';
-//import { MatPaginatorModule, MatTableDataSource, MatSort} from '@angular/material';
-import { Juego } from '../../AdminClass/juego';
 import { Genero } from '../../AdminClass/genero';
 import { Plataforma } from '../../AdminClass/plataforma';
-import { RelacionJuego } from '../../AdminClass/relacion-juego';
 import { JuegosList } from '../../Class/juegos-list';
 import * as $ from 'jquery';
-import { juegos} from '../../Class/Interfaces/Juegos';
 import { PageEvent } from '@angular/material/paginator';
-
-
-
+import { CarritoCompra } from '../../Class/carrito-compra';
 
 @Component({
   selector: 'app-listar-juegos',
@@ -35,42 +28,45 @@ export class ListarJuegosComponent implements OnInit {
   GeneroSelecionado: any= [];
   PlataformaSelecionado: any= [];
 
-  columnsToDisplay=['Imagen', 'Nombre', 'Tipo', 'Descripcion','Precio'];
+  nombreJuego: any ;
 
-  constructor(private juegosService:JuegosService,
+  constructor(private ProductosService:ProductosService,
               private adminService:AdminService,
               private router:Router,
-              private filtrarService:FiltrarService,
               private activateRoute:ActivatedRoute,
               private gestionCarritoService:GestionCarritoService) { }
 
   ngOnInit(): void {
+    // LLamada a funciones
     this.getJuegos();
-
-
     this.getGenro();
+    this.getPlataforma();
+    // Despliege de las cajas de checkbox de Plataforma y Genero
     $(".DivcheckboxGenero").hide();
     $(".Genero").click(function(){
       $(".DivcheckboxGenero").toggle();
     });
-    this.getPlataforma();
     $(".DivcheckboxPlataforma").hide();
     $(".Plataforma").click(function(){
       $(".DivcheckboxPlataforma").toggle();
     });
     
   }
-  
+  //Buscador de juegos 
+  filterPost = "";
+ 
+
+  // paginacion de los Juegos
   handlePage(e: PageEvent){
     this.page_size = e.pageSize
     this.page_number = e.pageIndex + 1
-
   }
   page_size:number = 16 ;
   page_number = 1 ;
   pageSizeOptions = [8,12,20]
 
 
+  //Obtener Genero Plataforma y Juegos de la base de datos
   getGenro(){
     this.adminService.getGenero().subscribe(datos => this.ListGenero = datos); 
   }
@@ -80,13 +76,11 @@ export class ListarJuegosComponent implements OnInit {
   }
 
   getJuegos(){
-    this.juegosService.getListaJuegos().subscribe(datos => this.datos = datos);
-    this.juegosService.getListaJuegos().subscribe(datos => this.listaCompleta = datos);
+    this.ProductosService.getListaJuegos().subscribe(datos => this.datos = datos);
+    this.ProductosService.getListaJuegos().subscribe(datos => this.listaCompleta = datos);
   }
 
-  comprar(event){
-  }
-
+  //filtrar por genero y plataforma
   filtrarGenero(event){
     if(event.target.checked==true){
       this.GeneroSelecionado.push(event.target.value);
@@ -224,4 +218,25 @@ export class ListarJuegosComponent implements OnInit {
 
     }
   }
+
+  //comprar
+  comprar(event){
+    const articulo=new CarritoCompra();
+      articulo.Id_Juego=event.Id_Juego;
+      articulo.Id_Plataforma=event.Id_Plataforma;
+      articulo.Nombre_Juego=event.Nombre_Juego;
+      articulo.Nombre_Plataforma=event.Nombre_Plataforma;
+      articulo.Edicion=event.Edicion;
+      articulo.Portada=event.Portada;
+      articulo.Cantidad= 1;
+      articulo.Precio= event.Precio;
+
+      const respuesta=this.gestionCarritoService.anadirEnCarrito(articulo);
+    if (respuesta!="OK") {
+      //this.mensaje = "OPERACION NO REALIZADA. INTENTELO OTRA VEZ";
+      alert("OPERACION NO REALIZADA. INTENTELO OTRA VEZ");
+    }
+  }
+
+  
 }

@@ -4,8 +4,7 @@ import { AdminService } from '../../../../servicios/admin.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from "../../../../dialogo-confirmacion/dialogo-confirmacion.component"
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { PageEvent } from '@angular/material/paginator';
 
 
 @Component({
@@ -15,7 +14,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ListJuegoComponent implements OnInit {
   public listaJuego: Juego[]=[];
-  columndefs : any[] = ['Nombre','Descripcion','Portada','Lanzamiento','Valoracion','NumValoraciones','Imagenes','Video','EdadMin','Genero','Editar','Eliminar'];
+  columndefs : any[] = ['Nombre','Descripcion','Portada','Lanzamiento','Video','EdadMin','Genero','Editar','Eliminar'];
   //dataSource =new MatTableDataSource(this.listaUser);
 
   constructor(private adminService:AdminService, 
@@ -25,6 +24,18 @@ export class ListJuegoComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerJuego();
   }
+   //Buscador de juegos 
+   filterPost = "";
+ 
+
+   // paginacion de los Juegos
+   handlePage(e: PageEvent){
+     this.page_size = e.pageSize
+     this.page_number = e.pageIndex + 1
+   }
+   page_size:number = 15 ;
+   page_number = 1 ;
+   pageSizeOptions = [15,30,45]
 
   eliminarJuego(juego: Juego) {
     this.dialogo

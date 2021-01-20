@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-categoria',
@@ -35,6 +36,19 @@ export class CategoriaComponent implements OnInit {
   ngOnInit() {
     this.obtenerCategorias();
   }
+   //Buscador de juegos 
+   filterPost = "";
+ 
+
+   // paginacion de los Juegos
+   handlePage(e: PageEvent){
+     this.page_size = e.pageSize
+     this.page_number = e.pageIndex + 1
+   }
+   page_size:number = 15 ;
+   page_number = 1 ;
+   pageSizeOptions = [15,30,45]
+
 
   CategoriaModel = new Categoria(undefined,'');
   CategoriaEditModel = new Categoria(undefined,'');
@@ -69,7 +83,7 @@ export class CategoriaComponent implements OnInit {
   }
   //get list
   obtenerCategorias(){
-    this.adminService.getCategoria().subscribe((listaCategoria: Categoria[]) => this.listaCategoria = listaCategoria); 
+    this.adminService.getCategoria().subscribe(datos => this.listaCategoria = datos); 
   }
   //Insert 
   onSubmit() {

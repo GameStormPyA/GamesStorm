@@ -1,0 +1,44 @@
+input[type=number]::-webkit-outer-spin-button,
+
+input[type=number]::-webkit-inner-spin-button {
+
+    -webkit-appearance: none;
+
+    margin: 0;
+
+}
+input[type=number] {
+
+    -moz-appearance:textfield;
+
+}
+
+.Tiempo{
+    display: flex;
+    text-align: center;
+}
+.Tiempo .unit{
+    padding: 1em;
+}
+
+.Tiempo .unit strong{
+    display: block;
+    font-size: 2rem;
+}
+
+.PrecioPuja{
+    text-align: center;
+}
+.BotonPuja{
+    text-align: end;
+}
+.BotonPuja button{
+    width:100%;
+    height:100%;
+}
+
+.InputPuja{
+    width: 100%;
+    height: 100%;
+    text-align: left;
+}

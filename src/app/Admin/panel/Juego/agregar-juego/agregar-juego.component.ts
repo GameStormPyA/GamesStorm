@@ -25,7 +25,6 @@ LoginJuego = this.formBuild.group({
   Video: ['',[Validators.required]],
   EdadMin: ['',[Validators.required,Validators.min(0),Validators.max(21)]],
   Portada: ['',[Validators.required]],
-  Imagenes: ['',[Validators.required]],
   Id_Genero: ['',[Validators.required]]
  });
 
@@ -38,28 +37,27 @@ LoginJuego = this.formBuild.group({
    this.obtenerGenero();
  }
  
- JuegoModel = new Juego(undefined,"","","",undefined,undefined,undefined,"","",undefined,undefined,'');
+ JuegoModel = new Juego(undefined,"","","",undefined,"",undefined,undefined,'');
 
  onSubmit() {
   console.log(this.JuegoModel);
   
   this.adminService.addJuego(this.JuegoModel).subscribe((datos) => {      
     if(datos=="Existe"){
-      this.snackBar.open('Correo electronico ya registrado', undefined, {
+      this.snackBar.open('Juego ya registrado', undefined, {
         duration: 2000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition
       });
     }else{
-      this.snackBar.open('Usuario Registrado ', undefined, {
+      this.snackBar.open('Juego Registrado ', undefined, {
         duration: 2000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
         
         
       });
-      console.log(datos);
-      this.volver();
+       this.volver();
     }
   })
  }
@@ -68,7 +66,7 @@ LoginJuego = this.formBuild.group({
  }
 
  obtenerGenero(){
-  return this.adminService.getGenero().subscribe((listaGenero: Genero[]) => this.listaGenero = listaGenero);
+   this.adminService.getGenero().subscribe(datos => this.listaGenero = datos);
 }
 
  getErrorMessage(field:string):string{

@@ -4,8 +4,7 @@ import { AdminService } from '../../../../servicios/admin.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from "../../../../dialogo-confirmacion/dialogo-confirmacion.component"
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-list-compra-juego',
@@ -26,6 +25,19 @@ export class ListCompraJuegoComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerCompraJuego();
   }
+  //Buscador de juegos 
+  filterPost = "";
+ 
+
+  // paginacion de los Juegos
+  handlePage(e: PageEvent){
+    this.page_size = e.pageSize
+    this.page_number = e.pageIndex + 1
+  }
+  page_size:number = 15 ;
+  page_number = 1 ;
+  pageSizeOptions = [15,30,45]
+
 
   eliminarCompraJuego(compraJuego: CompraJuego) {
     this.dialogo
@@ -50,7 +62,7 @@ export class ListCompraJuegoComponent implements OnInit {
 
 
   obtenerCompraJuego(){
-    return this.adminService.getCompraJuego().subscribe((listaCompraJuego: CompraJuego[]) => this.listaCompraJuego = listaCompraJuego);
+    this.adminService.getCompraJuego().subscribe(datos => this.listaCompraJuego = datos);
   }
 
 }

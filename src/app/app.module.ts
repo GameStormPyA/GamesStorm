@@ -10,9 +10,8 @@ import { HeadComponent } from './head/head.component';
 //clases
 import { HomeService} from './servicios/home.service';
 import { AdminService} from './servicios/admin.service';
-import { JuegosService} from './servicios/juegos.service';
+import { ProductosService} from './servicios/productos.service';
 import { GestionCarritoService } from './servicios/gestion-carrito.service';
-import { FiltrarService} from './servicios/filtrar.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //material
@@ -31,6 +30,8 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { MatCardModule} from '@angular/material/card';
 import { MatRadioModule} from '@angular/material/radio';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { YouTubePlayerModule} from '@angular/youtube-player';
 
 
 //form
@@ -41,16 +42,12 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 //
 import { DialogoConfirmacionComponent } from './dialogo-confirmacion/dialogo-confirmacion.component';
 import { HomeComponent } from './body/home/home.component';
-import { ProductosComponent } from './central/productos/productos.component';
 import { LoginComponent } from './session/login/login.component';
 import { RegisterComponent } from './session/register/register.component';
-import { CarritoComponent } from './carrito/carrito/carrito.component';
 import { FiltroComponent } from './filtro/filtro/filtro.component';
-import { SubastaComponent } from './subasta/subasta/subasta.component';
 import { UserComponent } from './config/user/user.component';
 import { NoticiaComponent } from './news/noticia/noticia.component';
 import { AboutComponent } from './about/about/about.component';
-//import { PlataformaComponent } from './Admin/panel/plataforma/plataforma.component';
 import { PanelComponent } from './Admin/panel/panel.component';
 import { CategoriaComponent } from './Admin/panel/categoria/categoria.component';
 import { GeneroComponent } from './Admin/panel/genero/genero.component';
@@ -75,12 +72,6 @@ import { ListSubastaComponent} from './Admin/panel/subasta/list-subasta/list-sub
 import { EditarPujaComponent } from './Admin/panel/puja/editar-puja/editar-puja.component';
 import { AgregarPujaComponent } from './Admin/panel/puja/agregar-puja/agregar-puja.component';
 import { ListPujaComponent } from './Admin/panel/puja/list-puja/list-puja.component';
-import { AgregarComentarioJuegoComponent } from './Admin/panel/comentarioJuego/agregar-comentario-juego/agregar-comentario-juego.component';
-import { ListComentarioJuegoComponent } from './Admin/panel/comentarioJuego/list-comentario-juego/list-comentario-juego.component';
-import { EditarComentarioJuegoComponent } from './Admin/panel/comentarioJuego/editar-comentario-juego/editar-comentario-juego.component';
-import { AgregarComentarioAccesorioComponent } from './Admin/panel/comentarioAccesorio/agregar-comentario-accesorio/agregar-comentario-accesorio.component';
-import { ListComentarioAccesorioComponent } from './Admin/panel/comentarioAccesorio/list-comentario-accesorio/list-comentario-accesorio.component';
-import { EditarComentarioAccesorioComponent } from './Admin/panel/comentarioAccesorio/editar-comentario-accesorio/editar-comentario-accesorio.component';
 import { EditarCompraJuegoComponent } from './Admin/panel/CompraJuego/editar-compra-juego/editar-compra-juego.component';
 import { ListCompraJuegoComponent } from './Admin/panel/CompraJuego/list-compra-juego/list-compra-juego.component';
 import { AgregarCompraJuegoComponent } from './Admin/panel/CompraJuego/agregar-compra-juego/agregar-compra-juego.component';
@@ -92,6 +83,14 @@ import { ListarJuegosComponent } from './body/listar-juegos/listar-juegos.compon
 import { NgxPrettyCheckboxModule } from 'ngx-pretty-checkbox';
 import { PaginatePipe } from './pipes/paginate.pipe';
 import { CustomMatPaginatorIntl } from './paginator-es';
+import { FilterPipe } from './pipes/filter.pipe';
+import { ListarAccesoriosComponent } from './body/listar-accesorios/listar-accesorios.component';
+import { MostrarAccesorioComponent } from './body/mostrar-accesorio/mostrar-accesorio.component';
+import { MostrarJuegoComponent } from './body/mostrar-juego/mostrar-juego.component';
+import { CarritoComponent } from './body/carrito/carrito.component';
+import { PlataformasComponent } from './Admin/panel/plataformas/plataformas.component';
+import { MapaWebComponent } from './body/mapa-web/mapa-web.component';
+import { SubastasComponent } from './body/subastas/subastas.component';
 
 @NgModule({
   declarations: [
@@ -103,16 +102,13 @@ import { CustomMatPaginatorIntl } from './paginator-es';
     ListSubastaComponent,
     ListPujaComponent,
     HomeComponent,
-    ProductosComponent,
     LoginComponent,
     RegisterComponent,
     CarritoComponent,
     FiltroComponent,
-    SubastaComponent,
     UserComponent,
     NoticiaComponent,
     AboutComponent,
-  //PlataformaComponent,
     PanelComponent,
     CategoriaComponent,
     GeneroComponent,
@@ -135,12 +131,6 @@ import { CustomMatPaginatorIntl } from './paginator-es';
     EditarSubastaComponent,
     EditarPujaComponent,
     AgregarPujaComponent,
-    AgregarComentarioJuegoComponent,
-    ListComentarioJuegoComponent,
-    EditarComentarioJuegoComponent,
-    AgregarComentarioAccesorioComponent,
-    ListComentarioAccesorioComponent,
-    EditarComentarioAccesorioComponent,
     EditarCompraJuegoComponent,
     ListCompraJuegoComponent,
     AgregarCompraJuegoComponent,
@@ -149,6 +139,13 @@ import { CustomMatPaginatorIntl } from './paginator-es';
     ListCompraAccesorioComponent,
     ListarJuegosComponent,
     PaginatePipe,
+    FilterPipe,
+    ListarAccesoriosComponent,
+    MostrarAccesorioComponent,
+    MostrarJuegoComponent,
+    PlataformasComponent,
+    MapaWebComponent,
+    SubastasComponent,
   ],
   imports: [
     BrowserModule,
@@ -176,17 +173,19 @@ import { CustomMatPaginatorIntl } from './paginator-es';
     MatRadioModule,
     NgxMatFileInputModule,
     NgxPrettyCheckboxModule,
+    Ng2SearchPipeModule,
+    ReactiveFormsModule,
+    YouTubePlayerModule 
   ],
   providers: [
     HomeService,
     AdminService,
-    JuegosService,
+    ProductosService,
     GestionCarritoService,
     {
       provide: MatPaginatorIntl, 
       useClass: CustomMatPaginatorIntl
-    },
-    FiltrarService
+    }
   ],
   bootstrap: [AppComponent]
 })

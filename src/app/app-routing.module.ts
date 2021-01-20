@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './body/home/home.component';
 import { LoginComponent } from './session/login/login.component';
 import { RegisterComponent } from './session/register/register.component';
-import { CarritoComponent } from './carrito/carrito/carrito.component';
+import { CarritoComponent } from './body/carrito/carrito.component';
 import { AboutComponent } from './about/about/about.component';
 //import { PlataformaComponent } from './Admin/panel/plataforma/plataforma.component';
 import { PanelComponent } from './Admin/panel/panel.component';
@@ -30,12 +30,6 @@ import { ListSubastaComponent} from './Admin/panel/subasta/list-subasta/list-sub
 import { EditarPujaComponent } from './Admin/panel/puja/editar-puja/editar-puja.component';
 import { AgregarPujaComponent } from './Admin/panel/puja/agregar-puja/agregar-puja.component';
 import { ListPujaComponent } from './Admin/panel/puja/list-puja/list-puja.component';
-import { AgregarComentarioJuegoComponent } from './Admin/panel/comentarioJuego/agregar-comentario-juego/agregar-comentario-juego.component';
-import { ListComentarioJuegoComponent } from './Admin/panel/comentarioJuego/list-comentario-juego/list-comentario-juego.component';
-import { EditarComentarioJuegoComponent } from './Admin/panel/comentarioJuego/editar-comentario-juego/editar-comentario-juego.component';
-import { AgregarComentarioAccesorioComponent } from './Admin/panel/comentarioAccesorio/agregar-comentario-accesorio/agregar-comentario-accesorio.component';
-import { ListComentarioAccesorioComponent } from './Admin/panel/comentarioAccesorio/list-comentario-accesorio/list-comentario-accesorio.component';
-import { EditarComentarioAccesorioComponent } from './Admin/panel/comentarioAccesorio/editar-comentario-accesorio/editar-comentario-accesorio.component';
 import { EditarCompraJuegoComponent } from './Admin/panel/CompraJuego/editar-compra-juego/editar-compra-juego.component';
 import { ListCompraJuegoComponent } from './Admin/panel/CompraJuego/list-compra-juego/list-compra-juego.component';
 import { AgregarCompraJuegoComponent } from './Admin/panel/CompraJuego/agregar-compra-juego/agregar-compra-juego.component';
@@ -43,6 +37,14 @@ import { AgregarCompraAccesorioComponent } from './Admin/panel/CompraAccesorio/a
 import { EditarCompraAccesorioComponent } from './Admin/panel/CompraAccesorio/editar-compra-accesorio/editar-compra-accesorio.component';
 import { ListCompraAccesorioComponent } from './Admin/panel/CompraAccesorio/list-compra-accesorio/list-compra-accesorio.component';
 import { ListarJuegosComponent } from './body/listar-juegos/listar-juegos.component';
+import { ListarAccesoriosComponent } from './body/listar-accesorios/listar-accesorios.component';
+import { MostrarAccesorioComponent } from './body/mostrar-accesorio/mostrar-accesorio.component';
+import { MostrarJuegoComponent } from './body/mostrar-juego/mostrar-juego.component';
+import { PlataformasComponent } from './Admin/panel/plataformas/plataformas.component';
+import { MapaWebComponent } from './body/mapa-web/mapa-web.component';
+import { SubastasComponent } from './body/subastas/subastas.component';
+
+
 
 const routes: Routes = [
   { path: "Home" , component: HomeComponent},
@@ -51,7 +53,9 @@ const routes: Routes = [
   { path: "Carrito" , component: CarritoComponent},
   { path: "About" , component: AboutComponent},
   { path: "Panel" , component: PanelComponent},
- // { path: "Panel/Plataforma" , component: PlataformaComponent},
+  { path: "Subastas" , component: SubastasComponent},
+  { path: "MapaWeb" , component: MapaWebComponent},
+  { path: "Panel/Plataforma" , component: PlataformasComponent},
   { path: "Panel/Categoria" , component: CategoriaComponent},
   { path: "Panel/Genero" , component: GeneroComponent},
   { path: "Panel/User" , component: ListUserComponent},
@@ -75,19 +79,16 @@ const routes: Routes = [
   { path: "Panel/Puja" , component: ListPujaComponent},
   { path: "Panel/Puja/Agregar" , component: AgregarPujaComponent},
   { path: "Panel/Puja/Editar/:Id_Subasta/:Id_User" , component: EditarPujaComponent},
-  { path: "Panel/ComentarioJuego" , component: ListComentarioJuegoComponent},
-  { path: "Panel/ComentarioJuego/Agregar" , component: AgregarComentarioJuegoComponent},
-  { path: "Panel/ComentarioJuego/Editar/:Id_Juego/:Id_User" , component: EditarComentarioJuegoComponent},
-  { path: "Panel/ComentarioAccesorio" , component: ListComentarioAccesorioComponent},
-  { path: "Panel/ComentarioAccesorio/Agregar" , component: AgregarComentarioAccesorioComponent},
-  { path: "Panel/ComentarioAccesorio/Editar/:Id_Accesorio/:Id_User" , component: EditarComentarioAccesorioComponent},
   { path: "Panel/ComprarJuego" , component: ListCompraJuegoComponent},
   { path: "Panel/ComprarJuego/Agregar" , component: AgregarCompraJuegoComponent},
   { path: "Panel/ComprarJuego/Editar/:Id_Juego/:Id_User/:Id_Plaforma" , component: EditarCompraJuegoComponent},
   { path: "Panel/ComprarAccesorio" , component: ListCompraAccesorioComponent},
   { path: "Panel/ComprarAccesorio/Agregar" , component: AgregarCompraAccesorioComponent},
   { path: "Panel/ComprarAccesorio/Editar/:Id_Accesorios/:Id_User/:Id_Plaforma" , component: EditarCompraAccesorioComponent},
-  { path: "Juegos" , component: ListarJuegosComponent},
+  { path: "ListadoJuegos" , component: ListarJuegosComponent},
+  { path: "ListadoAccesorios" , component: ListarAccesoriosComponent},
+  { path: "ListadoJuegos/Juego/:Id_Juego/:Id_Plataforma" , component: MostrarJuegoComponent},
+  { path: "ListadoAccesorios/Accesorio/:Id_Accesorio/:Id_Plataforma" , component: MostrarAccesorioComponent},
   { path: "", redirectTo: "/Home", pathMatch: "full" },
   { path: "**", redirectTo: "/Home" }
 ];

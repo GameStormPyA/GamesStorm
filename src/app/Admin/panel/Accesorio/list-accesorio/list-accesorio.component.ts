@@ -4,8 +4,8 @@ import { AdminService } from '../../../../servicios/admin.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from "../../../../dialogo-confirmacion/dialogo-confirmacion.component"
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { PageEvent } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-list-accesorio',
@@ -15,7 +15,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class ListAccesorioComponent implements OnInit {
 
   public listaAccesorio: Accesorio[]=[];
-  columndefs : any[] = ['Nombre','Descripcion','Portada','Valoracion','NumValoraciones','Categria','Editar','Eliminar'];
+  columndefs : any[] = ['Nombre','Descripcion','Portada','Categria','Editar','Eliminar'];
   //dataSource =new MatTableDataSource(this.listaUser);
 
   constructor(private adminService:AdminService, 
@@ -25,6 +25,19 @@ export class ListAccesorioComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerAccesorio();
   }
+   //Buscador de juegos 
+   filterPost = "";
+ 
+
+   // paginacion de los Juegos
+   handlePage(e: PageEvent){
+     this.page_size = e.pageSize
+     this.page_number = e.pageIndex + 1
+   }
+   page_size:number = 15 ;
+   page_number = 1 ;
+   pageSizeOptions = [15,30,45]
+
 
   eliminarAccesorio(accesorio: Accesorio) {
     this.dialogo
@@ -47,7 +60,7 @@ export class ListAccesorioComponent implements OnInit {
 
 
   obtenerAccesorio(){
-    return this.adminService.getAccesorio().subscribe((listaAccesorio: Accesorio[]) => this.listaAccesorio = listaAccesorio);
+    this.adminService.getAccesorio().subscribe(datos => this.listaAccesorio = datos);
   }
 
 }

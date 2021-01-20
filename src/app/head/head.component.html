@@ -4,8 +4,8 @@
             <img src="../../assets/image/header.jpg"  id="ImagenCabeza"  alt="Logo GamesStorm">
         </a>
     </div>
-    <div class="col align-self-center d-flex flex-row-reverse" id="ConfUsua">
-        <button mat-icon-button [matMenuTriggerFor]="menu" class="mr-2">
+    <div class="col align-self-center d-flex flex-row-reverse" id="ConfUsua" >
+        <button mat-icon-button  [matMenuTriggerFor]="menu" class="mr-2" >
             <mat-icon>account_circle</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="MenuPerfil">
@@ -17,16 +17,12 @@
               <mat-icon  class="IconosPerfile">person_add_alt_1</mat-icon>
               <span class="TextoMenuPerfile ml-1"><b>Registrarse </b></span>
             </button>
-            <button mat-menu-item class="DivProfile"  *ngIf="admin && Id ">   
-              <mat-icon  class="IconosPerfile">settings</mat-icon>
-              <span class="TextoMenuPerfile ml-1"><b>Configurar Perfil</b></span>
-            </button>
             <button mat-menu-item class="DivProfile" *ngIf="admin === '1'" [routerLink]="['/Panel']" >   
               <mat-icon  class="IconosPerfile">admin_panel_settings</mat-icon>
               <span class="TextoMenuPerfile ml-1"><b>Configuración Administrador</b></span>
             </button>
             <button mat-menu-item class="DivProfile" [routerLink]="['/Carrito']">
-              <mat-icon matBadge="0" class="IconosPerfileCarrito">shopping_cart</mat-icon>
+              <mat-icon matBadge="{{numProductosCarrito}}" class="IconosPerfileCarrito">shopping_cart</mat-icon>
               <span class="TextoMenuPerfile ml-1"><b>Carrito</b></span>
             </button>
             <button mat-menu-item class="DivProfile" (click)="Cerrar()"  *ngIf="admin && Id ">
@@ -37,3 +33,4 @@
      </div>
     
 </div>
+

@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="mat-elevation-z8">
-<table mat-table [dataSource]="listaAccesorio" class="mat-elevation-z8 col-12" style="width:100%;">
+<table mat-table [dataSource]="listaAccesorio | paginate:page_size:page_number | filter:filterPost" class=" col-12" style="width:100%;">
     <ng-container matColumnDef="Nombre">
         <th mat-header-cell *matHeaderCellDef>Nombre</th>
         <td mat-cell *matCellDef="let Accesorio"> {{Accesorio.Nombre}} </td>
@@ -23,7 +23,7 @@
     </ng-container>
     <ng-container matColumnDef="Portada">
         <th mat-header-cell *matHeaderCellDef>Portada</th>
-        <td mat-cell *matCellDef="let Accesorio"><img [src]="Accesorio.Portada" alt="{{Accesorio.Portada}}" class="h-25 w-25"/></td>
+        <td mat-cell *matCellDef="let Accesorio"  width="100px" height="100px"><img [src]="Accesorio.Portada" alt="{{Accesorio.Portada}}" class="h-25 w-25"/></td>
     </ng-container>
     <ng-container matColumnDef="Valoracion">
         <th mat-header-cell *matHeaderCellDef>Valoracion</th>
@@ -60,6 +60,20 @@
     <tr mat-header-row *matHeaderRowDef="columndefs"></tr>
     <tr mat-row *matRowDef="let Accesorio; columns: columndefs;"></tr>
 </table>
-<mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+<div class="row">
+    <div class="col-6 mt-2">
+        <mat-form-field class="ml-4">
+            <mat-label><b>Buscar Accesorios</b></mat-label>
+            <input matInput type="text" class="from-control" placeholder="" [(ngModel)]="filterPost" name="filterPost"> 
+        </mat-form-field>
+    </div>
+    <div class="col-6">
+        <mat-paginator [length]="listaAccesorio.length"
+                [pageSize]="page_size"
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="handlePage($event)">
+        </mat-paginator>
+    </div>
+</div>
 </div>
 

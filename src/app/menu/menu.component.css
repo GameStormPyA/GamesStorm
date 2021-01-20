@@ -1,27 +1,38 @@
-.navbar-toggler{
-  background-color:white;
-  border: solid;
-  outline:none;
-}
-#menu{
-  position: relative;
-}
-.nav-link{
-  background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-}
-.DivProfile{
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-}
+
 li{
   font-size: 120%;
+}
+
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
+  background:#be4242;
+}
+
+.dropdown-item b{
+  color: beige;
+}
+
+.dropdown-item:hover{
+  background-color:#292b2c;
+}
+
+.nav-item>a>b{
+  color: white;
+}
+
+#navegador{
+  background: rgb(83, 83, 83);
+  
+}
+
+#navegador  button{
+
+ color: black;
+}
+.navbar-toggler{
+  border: solid;
+  outline:none;
+  background-color:#000000;
+
 }

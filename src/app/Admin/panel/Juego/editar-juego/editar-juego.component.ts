@@ -13,8 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class EditarJuegoComponent implements OnInit {
 
-  public JuegoSelect: Juego = new Juego(undefined,"","","",undefined,undefined,undefined,"","",undefined,undefined,'');
-
+  public JuegoSelect = new Juego(undefined,"","","",undefined,"",undefined,undefined,'');
   public listaGenero: Genero[]=[];
 
   LoginJuego = this.formBuild.group({

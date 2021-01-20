@@ -13,18 +13,7 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row col-12">
-                <div class="col-lg-6 col-md-6 d-flex justify-content-center">
-                    <mat-form-field>
-                        <textarea matInput [(ngModel)]="AccesorioModel.Descripcion" type="tel" placeholder="Descripcion"  formControlName="Descripcion"></textarea>
-                        <mat-error *ngIf="isValidField('Descripcion')" >
-                            {{ getErrorMessage("Descripcion") }} 
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-               
-                <div class="col-lg-6 col-md-6 d-flex justify-content-center">
+               <div class="col-lg-3 col-md-6 d-flex justify-content-center">
                     <mat-form-field>
                         <mat-select  placeholder="Categoria" [(ngModel)]="AccesorioModel.Id_Categoria"  formControlName="Id_Categoria" >
                             <mat-option *ngFor="let Categoria of listaCategoria" [value]="Categoria.Id">
@@ -36,9 +25,7 @@
                         </mat-error>
                     </mat-form-field> 
                 </div>
-            </div>
-            <div class="row col-12">
-                <div class="col-lg-6 col-md-6 d-flex justify-content-center">
+                <div class="col-lg-3 col-md-6 d-flex justify-content-center">
                     <!-- <mat-form-field>
                        <input matInput  [(ngModel)]="UserModel.Logo" type="text" placeholder="Logo"  formControlName="Logo">
                         <mat-error *ngIf="isValidField('Logo')" >
@@ -50,6 +37,16 @@
                         <div>
                             <input [(ngModel)]="AccesorioModel.Portada" type="file"  formControlName="Portada">
                         </div>      
+                </div>
+            </div>
+            <div class="row col-12">
+                <div class="col-lg-6 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <textarea matInput [(ngModel)]="AccesorioModel.Descripcion" type="tel" placeholder="Descripcion"  formControlName="Descripcion"></textarea>
+                        <mat-error *ngIf="isValidField('Descripcion')" >
+                            {{ getErrorMessage("Descripcion") }} 
+                        </mat-error>
+                    </mat-form-field>
                 </div>
             </div>
             <div class=" row col-12">

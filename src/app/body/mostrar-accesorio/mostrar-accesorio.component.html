@@ -1,0 +1,70 @@
+<div class="container mt-4 mat-elevation-z8" *ngFor="let Accesorio of AccesorioSelect" >
+    <div class="row"  >
+        <div class="col-lg-3 col-md-3  col-sm-12 col-xs-12 mt-2 mb-2">
+            <div >
+                <img src="../../../assets/image/microfono.jpg" alt="Imagen de Accesorio {{ Accesorio.Nombre_Accesorios }} " class="w-100 mt-2 mb-2">
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" >
+            <div class="nombreAccesorio col-12 d-flex justify-content-center ">
+                <h1 class="mt-2">
+                    <b>
+                        {{ Accesorio.Nombre_Accesorios }} 
+                    </b>
+                </h1>
+            </div>
+            <div class="DivInformation row ">
+                <div class=" col-6 d-flex justify-content-center">
+                    <h2 class="mt-2">
+                        <b>
+                            {{ Accesorio.Nombre_Plataforma }}
+                        </b>
+                    </h2>
+                </div>
+                <div class="col-6 d-flex justify-content-center">
+                    <h2 class="mt-2">
+                        <b>
+                            Stock :  {{ Accesorio.Stock }}
+                        </b>
+                    </h2>
+                </div>
+                <hr>
+            </div>
+            <div class="col-12 mb-2 mt-2" >
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                          <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <b>Descripcion</b>
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                          <div class="card-body">
+                                <p><b>Categoria :</b>{{ Accesorio.Nombre_Categoria }}</p>
+                                <p>{{ Accesorio.Descripcion }} </p>
+                          </div>
+                        </div>
+                      </div>                
+                  </div>
+            </div>
+            <div class="row d-flex justify-content-end mt-2">
+                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6 ">
+                    <span>
+                        Precio
+                    </span>
+                    <h2>
+                       <b>{{ Accesorio.Precio }}€</b> 
+                    </h2>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                    <button mat-flat-button color="accent" (click)="comprar(Accesorio)" class="w-100"><h2 class="mt-2">Comprar</h2></button>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+

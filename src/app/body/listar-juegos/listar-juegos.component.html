@@ -1,5 +1,5 @@
 <div class="row ">
-    <div class="col-lg-2"> 
+    <div class="col-lg-2 "> 
         <div class="DivGenero col-lg-12 col-md-3 d-none d-sm-none  d-md-block  mat-elevation-z8 mt-2" >
             <div class="d-flex justify-content-center mt-2">
                 <button class="Genero mt-2 " >
@@ -62,32 +62,55 @@
             </div>    
         </div>
     </div>
-    <div class="col-10 border">
-        
+    
+    <div class="col-lg-10 mt-2">
         <div class="row">
-            <div class="col-lg-3"  *ngFor="let Juego of datos | paginate:page_size:page_number">
-                
-                    <mat-card class="border mt-2" >
-                        <mat-card-header>
-                            <mat-card-title><b>{{ Juego.Nombre_Juego }}</b></mat-card-title>
-                            <mat-card-subtitle>{{ Juego.Nombre_Plataforma }}</mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <img src="{{Juego.Portada}}" alt="Foto juego {{Juego.Nombre_Juego}} de {{ Juego.Nombre_Plataforma }}" class="img">
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <div class="row">
-                                <div class="col-6">
-                                    <h2 class="ml-2"> <b>{{ Juego.Precio }}€</b> </h2>
-                                </div>
-                                <div class="col-6 d-flex justify-content-end">
-                                    <button mat-flat-button color="accent" (click)="comprar(Juego)" >Añadir</button>
-                                </div>
-                            </div>     
-                        </mat-card-actions>
-                    </mat-card>    
-                
-                
+            <div class="col-6">
+               <span *ngFor="let Generos of GeneroSelecionado">
+                  <span *ngFor="let list of ListGenero">
+                    <button  *ngIf="list.Id === Generos" class="BotonFiltoSelect rounded-pill border-danger mt-2 mr-1 bg-danger opct opacity-40" > 
+                       <span class="d-flex align-items-center"><b>{{ list.Nombre}} </b></span> 
+                    </button>
+                  </span>
+               </span>
+               <span *ngFor="let Plataformas of PlataformaSelecionado">
+                <span *ngFor="let lista of ListPlataforma">
+                  <button  *ngIf="lista.Id === Plataformas" class="BotonFiltoSelect rounded-pill border-danger mt-2 mr-1 bg-danger opct opacity-40" > 
+                     <span class="d-flex align-items-center"><b>{{ lista.Nombre}} </b></span> 
+                  </button>
+                </span>
+             </span>
+            </div>
+            <div class="col-6 d-flex justify-content-end">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Buscar Juego</mat-label>
+                    <input matInput type="text" class="from-control" placeholder="Ex. Grand Theft Auto V" [(ngModel)]="filterPost" name="filterPost"> 
+                </mat-form-field>
+            </div>
+        </div>
+         
+
+        <div class="row">
+            <div class="col-lg-3"  *ngFor="let Juego of datos | paginate:page_size:page_number | filter:filterPost ">
+                <mat-card class="border mt-2"  >
+                    <mat-card-header>
+                        <mat-card-title><b>{{ Juego.Nombre_Juego }}</b></mat-card-title>
+                        <mat-card-subtitle>{{ Juego.Nombre_Plataforma }}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <img src="{{Juego.Portada}}" alt="Foto juego {{Juego.Nombre_Juego}} de {{ Juego.Nombre_Plataforma }}" class="img" [routerLink]="['/ListadoJuegos/Juego/',Juego.Id_Juego,Juego.Id_Plataforma]">
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <div class="row">
+                            <div class="col-6">
+                                <h2 class="ml-2"> <b>{{ Juego.Precio }}€</b> </h2>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <button mat-flat-button color="accent" (click)="comprar(Juego)" >Añadir</button>
+                            </div>
+                        </div>     
+                    </mat-card-actions>
+                </mat-card>    
             </div>          
         </div>
         <mat-paginator [length]="datos.length"

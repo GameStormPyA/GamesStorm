@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="mat-elevation-z8">
-<table mat-table [dataSource]="listaSubasta" class="mat-elevation-z8 col-12" style="width:100%;">
+<table mat-table [dataSource]="listaSubasta | paginate:page_size:page_number | filter:filterPost" class=" col-12" style="width:100%;">
     <ng-container matColumnDef="Juego">
         <th mat-header-cell *matHeaderCellDef>Juego</th>
         <td mat-cell *matCellDef="let Subasta"> {{Subasta.Nombre_Juego}} </td>
@@ -68,6 +68,20 @@
     <tr mat-header-row *matHeaderRowDef="columndefs"></tr>
     <tr mat-row *matRowDef="let Subasta; columns: columndefs;"></tr>
 </table>
-<mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+<div class="row">
+    <div class="col-6 mt-2">
+        <mat-form-field class="ml-4">
+            <mat-label><b>Buscar Accesorios</b></mat-label>
+            <input matInput type="text" class="from-control" placeholder="" [(ngModel)]="filterPost" name="filterPost"> 
+        </mat-form-field>
+    </div>
+    <div class="col-6">
+        <mat-paginator [length]="listaSubasta.length"
+                [pageSize]="page_size"
+                [pageSizeOptions]="pageSizeOptions"
+                (page)="handlePage($event)">
+        </mat-paginator>
+    </div>
+</div>
 </div>
 

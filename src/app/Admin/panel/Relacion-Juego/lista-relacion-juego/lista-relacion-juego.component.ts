@@ -4,8 +4,7 @@ import { AdminService } from '../../../../servicios/admin.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from "../../../../dialogo-confirmacion/dialogo-confirmacion.component"
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-lista-relacion-juego',
@@ -25,6 +24,18 @@ export class ListaRelacionJuegoComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerRelacionJuego();
   }
+  //Buscador de juegos 
+  filterPost = "";
+ 
+
+  // paginacion de los Juegos
+  handlePage(e: PageEvent){
+    this.page_size = e.pageSize
+    this.page_number = e.pageIndex + 1
+  }
+  page_size:number = 15 ;
+  page_number = 1 ;
+  pageSizeOptions = [15,30,45]
 
   eliminarRelacionJuego(relacionJuego: RelacionJuego) {
     this.dialogo
@@ -47,7 +58,7 @@ export class ListaRelacionJuegoComponent implements OnInit {
 
 
   obtenerRelacionJuego(){
-    return this.adminService.getRelacionJuego().subscribe((listaRelacionJuego: RelacionJuego[]) => this.listaRelacionJuego = listaRelacionJuego);
+    this.adminService.getRelacionJuego().subscribe(datos => this.listaRelacionJuego = datos); 
   }
 
 }

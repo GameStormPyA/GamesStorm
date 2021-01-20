@@ -1,0 +1,122 @@
+<div class="row ">
+    <div class="col-lg-2 "> 
+        <div class="DivCategoria col-lg-12 col-md-3 d-none d-sm-none  d-md-block  mat-elevation-z8 mt-2" >
+            <div class="d-flex justify-content-center mt-2">
+                <button class="Categoria mt-2 " >
+                    <h1>
+                        <b>Categoria</b>
+                    </h1>
+                </button>  
+            </div> 
+            <div class="DivcheckboxCategoria" >
+                <li *ngFor="let Categoria of ListCategoria" >
+                    <p><input type="checkbox" [value]="Categoria.Id" (change)="filtrarCategoria($event)" > <b> {{Categoria.Nombre}}</b></p>
+                </li>
+            </div>   
+        </div>
+        <div class="col-lg-2 col-md-3 d-block d-sm-block  d-md-none border mat-elevation-z8 mt-2">
+            <div class="d-flex justify-content-center mt-2">
+                <button class="Categoria" >
+                    <h1>
+                        <b>Categoria</b>
+                    </h1>
+                </button>  
+            </div>
+            <div class="DivcheckboxCategoria" >
+                <div class="row">
+                    <div *ngFor="let Categoria of ListCategoria" class="ml-4">
+                        <input type="checkbox" [value]="Categoria.Id" (change)="filtrarCategoria($event)" class="ml-2"> <b> {{Categoria.Nombre}}</b>
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <!--Filtro plataforma-->
+        <div class="DivPlataforma col-lg-12 col-md-3 d-none d-sm-none  d-md-block  mat-elevation-z8 mt-2" >
+            <div class="d-flex justify-content-center mt-2">
+                <button class="Plataforma mt-2 " >
+                    <h1>
+                        <b>Plataforma</b>
+                    </h1>
+                </button>  
+            </div> 
+            <div class="DivcheckboxPlataforma" >
+                <li *ngFor="let Plataforma of ListPlataforma" >
+                    <p><input type="checkbox" [value]="Plataforma.Id" (change)="filtrarPlataforma($event)" > <b> {{Plataforma.Nombre}}</b></p>
+                </li>
+            </div>   
+        </div>
+        <div class="col-lg-2 col-md-3 d-block d-sm-block  d-md-none border mat-elevation-z8 mt-2 mb-4">
+            <div class="d-flex justify-content-center mt-2">
+                <button class="Plataforma" >
+                    <h1>
+                        <b>Plataforma</b>
+                    </h1>
+                </button>  
+            </div>
+            <div class="DivcheckboxPlataforma" >
+                <div class="row">
+                    <div *ngFor="let Plataforma of ListPlataforma" class="ml-4">
+                        <input type="checkbox" [value]="Plataforma.Id" (change)="filtrarPlataforma($event)" class="ml-2"> <b> {{Plataforma.Nombre}}</b>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+    
+    <div class="col-lg-10 mt-2">
+        <div class="row">
+            <div class="col-6">
+               <span *ngFor="let Categorias of CategoriaSelecionado">
+                  <span *ngFor="let list of ListCategoria">
+                    <button  *ngIf="list.Id === Categorias" class="BotonFiltoSelect rounded-pill border-danger mt-2 mr-1 bg-danger opct opacity-40" > 
+                       <span class="d-flex align-items-center"><b>{{ list.Nombre}} </b></span> 
+                    </button>
+                  </span>
+               </span>
+               <span *ngFor="let Plataformas of PlataformaSelecionado">
+                <span *ngFor="let lista of ListPlataforma">
+                  <button  *ngIf="lista.Id === Plataformas" class="BotonFiltoSelect rounded-pill border-danger mt-2 mr-1 bg-danger opct opacity-40" > 
+                     <span class="d-flex align-items-center"><b>{{ lista.Nombre}} </b></span> 
+                  </button>
+                </span>
+             </span>
+            </div>
+            <div class="col-6 d-flex justify-content-end">
+                <mat-form-field >
+                    <mat-label>Buscar Accesorio</mat-label>
+                    <input matInput type="text" class="from-control" placeholder="Ex. Mando Dualshock 4 V2" [(ngModel)]="filterPost" name="filterPost"> 
+                </mat-form-field>
+            </div>
+        </div>
+         
+
+        <div class="row">
+            <div class="col-lg-3"  *ngFor="let Accesorio of datos | paginate:page_size:page_number | filter:filterPost ">
+                <mat-card class="border mt-2"  >
+                    <mat-card-header>
+                        <mat-card-title><b>{{ Accesorio.Nombre_Accesorios }}</b></mat-card-title>
+                        <mat-card-subtitle>{{ Accesorio.Nombre_Plataforma }}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content [routerLink]="['/ListadoAccesorios/Accesorio/',Accesorio.Id_Accesorios,Accesorio.Id_Plataforma]">
+                        <img src="{{Accesorio.Portada}}" alt="Foto juego {{Accesorio.Nombre_Accesorios}} de {{ Accesorio.Nombre_Plataforma }}" class="img" >
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <div class="row">
+                            <div class="col-6">
+                                <h2 class="ml-2"> <b>{{ Accesorio.Precio }}€</b> </h2>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <button mat-flat-button color="accent" (click)="comprar(Accesorio)" >Añadir</button>
+                            </div>
+                        </div>     
+                    </mat-card-actions>
+                </mat-card>    
+            </div>          
+        </div>
+        <mat-paginator [length]="datos.length"
+               [pageSize]="page_size"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="handlePage($event)">
+        </mat-paginator> 
+    </div>
+</div>

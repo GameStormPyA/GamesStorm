@@ -1,0 +1,72 @@
+<div  class="col-12 mt-4">
+    <h1 class="text-center"><b>Carrito De Compra</b></h1>
+    <hr class="hr">
+</div>
+<div class="row d-flex justify-content-center mt-4">
+    <div class="col-11 ">
+        <table class="table table-hover mat-elevation-z8">
+            <thead class="bg-light">
+                <tr>
+                    <th scope="col-1">#</th>
+                    <th scope="col-5">Producto</th>
+                    <th scope="col-1">Cantidad</th>
+                    <th scope="col-1">Precio</th>
+                    <th scope="col-2">Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr *ngIf="listaCarrito.length == 0" >
+                        <th scope="row" colspan=4>NO HAY PRODUCTOS EN EL CARRITO</th>
+                    </tr>        
+                <tr *ngFor="let articulo of listaCarrito; let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>
+                        <img [src]="articulo.Portada" width="50px" height="50px">
+                        <span *ngIf="articulo.Id_Accesorios" class="ml-1"><b>{{articulo.Nombre_Accesorios}}</b></span>
+                        <span *ngIf="articulo.Id_Juego" class="ml-1"><b>{{articulo.Nombre_Juego}}</b></span>
+                    </td>
+                    <td>{{articulo.Cantidad}}</td>
+                    <td>{{articulo.Precio |currency: 'EUR'}}</td>
+                    <td class="text-danger"><mat-icon (click)="borrar(articulo)" *ngIf="listaCarrito.length != 0">delete</mat-icon></td>
+                </tr>
+                <tr *ngIf="listaCarrito.length > 0">
+                    <td></td>
+                    <td><b>Total</b></td>
+                    <td><b>{{numProductosCarrito}} </b></td>
+                    <td><b>{{PrecioTotal|currency: 'EUR' }}</b></td>  
+                    <td *ngIf="Id" class="comprar" >
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                            Finalizar compra
+                        </button>
+                        
+                    </td> 
+                    
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>  
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header ">
+          <h1 class="modal-title text-center" id="exampleModalLabel"><b>Finalizar Compra</b></h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div #paypal>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

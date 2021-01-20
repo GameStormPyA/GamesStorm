@@ -13,13 +13,11 @@ import * as $ from 'jquery';
 })
 export class EditarUserComponent implements OnInit {
 
-  public userSelect: User = new User(undefined,"","","","","",undefined,"","",false);
+  public userSelect: User = new User(undefined,"","","",undefined,"",false);
 
   LoginUser = this.formBuild.group({
     Nombre: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]],
     Apellido: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]],
-    Cuenta: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(50)]],
-    Direccion: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(50)]],
     Correo: ['',[Validators.required, Validators.email]],
     Edad: ['',[Validators.required,Validators.min(0),Validators.max(100)]],
     Administrador: ['',[Validators.required]],
@@ -35,6 +33,7 @@ export class EditarUserComponent implements OnInit {
     let Id = Number(this.route.snapshot.paramMap.get("Id"));
     this.adminService.getUserSelecionada(Id).subscribe((userSelect: User) => this.userSelect = userSelect);  
   }
+
 
   volver() {
     this.router.navigate(['/Panel/User']);

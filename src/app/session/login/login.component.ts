@@ -3,7 +3,7 @@ import { MatSnackBar,MatSnackBarHorizontalPosition,MatSnackBarVerticalPosition }
 import { FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SessionService } from '../../servicios/session.service';
-import { Usuario } from '../../usuario';
+import { Usuario } from '../../Class/usuario';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     Contrasena: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(20)]],
   });
 
-  LoginModel = new Usuario(undefined,'','','','','','',undefined,'',undefined);
+  LoginModel = new Usuario(undefined,'','','','',undefined,undefined);
 
   constructor(private router: Router,
     private sessionService: SessionService,
@@ -29,7 +29,9 @@ export class LoginComponent implements OnInit {
     private formBuild :FormBuilder) { }
 
   ngOnInit(): void {
-  
+    if(localStorage.getItem("Id") !== null){
+      this.volver();
+    }
   }
   onSubmit() {
     this.sessionService.Login(this.LoginModel).subscribe((datos) => {      
