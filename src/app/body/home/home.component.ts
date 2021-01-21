@@ -119,16 +119,18 @@ export class HomeComponent implements OnInit {
 
   getJuegos(){
     this.productosService.getListaJuegos().subscribe(datos =>{ 
+
       this.datos = datos.sort(function (o1,o2) {
+
         if (o1.Stock < o2.Stock) { 
           return 1;
         } else if (o1.Stock > o2.Stock) {
           return -1;
         } 
         return 0;
-      });
-    
+      }).reverse();      
     });
+    
   }
 
   getAccesorios(){
@@ -140,10 +142,11 @@ export class HomeComponent implements OnInit {
           return -1;
         } 
         return 0;
-      });
+      }).reverse();
     
     });
   }
+  
   
 
   pujar(Subasta) {
