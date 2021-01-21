@@ -1,4 +1,4 @@
 export const environment = {
   production: true ,
-  baseUrl: "http://localhost/server"
+  baseUrl:"https://gamestormpetyo.000webhostapp.com",
 };
