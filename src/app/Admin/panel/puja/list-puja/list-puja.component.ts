@@ -4,8 +4,7 @@ import { AdminService } from '../../../../servicios/admin.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from "../../../../dialogo-confirmacion/dialogo-confirmacion.component"
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-list-puja',
@@ -26,6 +25,16 @@ export class ListPujaComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerPuja();
   }
+  //Buscador de juegos 
+  filterPost = "";
+  // paginacion de los Juegos
+  handlePage(e: PageEvent){
+    this.page_size = e.pageSize
+    this.page_number = e.pageIndex + 1
+  }
+  page_size:number = 15 ;
+  page_number = 1 ;
+  pageSizeOptions = [15,30,45]
 
   eliminarPuja(puja: Puja) {
     this.dialogo
@@ -48,7 +57,7 @@ export class ListPujaComponent implements OnInit {
 
 
   obtenerPuja(){
-    return this.adminService.getPuja().subscribe((listaPuja: Puja[]) => this.listaPuja = listaPuja);
+    return this.adminService.getPuja().subscribe(datos => this.listaPuja = datos);
   }
 
 }

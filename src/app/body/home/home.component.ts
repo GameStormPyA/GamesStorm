@@ -67,9 +67,9 @@ export class HomeComponent implements OnInit {
 
   slides = [{'image': '../../../assets/image/Carrusel/fifa21.jpg','Text':'FIFA 21'},
             {'image': '../../../assets/image/Carrusel/nfl.jpg','Text':'NFL 21'},
-            {'image': '../../../assets/image/Carrusel/starwars.jpg','Text':'Star Wars: Squadrons'}, 
+            {'image': '../../../assets/image/Carrusel/starwars.jpg','Text':'Star Wars'}, 
             {'image': '../../../assets/image/Carrusel/carrusel.jpg','Text':'GHOSTRUNNER'}, 
-            {'image': '../../../assets/image/Carrusel/7761.jpg','Text':'the sims snowy escape'}];
+            {'image': '../../../assets/image/Carrusel/cyberpunk.jpg','Text':'Cyberpunk'}];
   
   ngOnInit(): void {
     this.Id = localStorage.getItem('Id');

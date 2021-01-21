@@ -82,7 +82,7 @@ export class GeneroComponent implements OnInit {
   }
   //get list
   obtenerGenero(){
-    this.adminService.getGenero().subscribe((listaGenero: Genero[]) => this.listaGenero = listaGenero); 
+    this.adminService.getGenero().subscribe(datos  => this.listaGenero = datos); 
   }
   //Insert 
   onSubmit() {

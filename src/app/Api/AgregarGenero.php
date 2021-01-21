@@ -11,6 +11,4 @@ $sentencia = $bd->prepare("INSERT INTO genero(Nombre)
 VALUES(?)");
 $resultado = $sentencia->execute([$jsonGenero->Nombre]);
 
-echo json_encode([
-    "resultado" => $resultado,
-]);
+echo json_encode($resultado);

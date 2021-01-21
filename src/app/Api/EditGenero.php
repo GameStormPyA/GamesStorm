@@ -8,6 +8,7 @@ if (!$jsonGenero) {
     exit("No hay datos");
 }
 $bd = include_once "bd.php";
+
 $sentencia = $bd->prepare("UPDATE genero 
                 SET Nombre=:Nombre 
                 WHERE Id=:id ");

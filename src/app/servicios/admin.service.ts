@@ -165,8 +165,8 @@ export class AdminService {
     return this.http.get(`${this.baseUrl}/getSubastaSelecionada.php?Id=${Id}`);
   }
   //Puja
-  getPuja(){
-    return this.http.get(`${this.baseUrl}/getPujas.php`);
+  getPuja():Observable<Puja[]>{
+    return this.http.get<Puja[]>(`${this.baseUrl}/getPujas.php`);
   }
   DeletePuja(puja: Puja){
     return this.http.delete(`${this.baseUrl}/DeletePuja.php?Id_Subasta=${puja.Id_Subasta}&Id_User=${puja.Id_User}`);
