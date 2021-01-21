@@ -1,0 +1,38 @@
+<?php
+session_start();
+header("Access-Control-Allow-Origin: http://localhost:4200");
+header("Access-Control-Allow-Headers: *");
+
+    $jsonUsuario= json_decode(file_get_contents("php://input"));
+    if (!$jsonUsuario) {
+        exit("No hay datos de registro usuario");
+    }
+    $bd = include_once "bd.php";
+    $contador=0;
+    $resultadoExiste=$bd->prepare("SELECT COUNT(*) FROM user WHERE Correo=?");
+    $resultadoExiste -> execute([$jsonUsuario->Correo]);
+    if($resultadoExiste->fetchColumn() <= 0){
+        echo json_encode(
+             "NoExiste",
+        );
+    }else{
+        $sentencia = $bd->prepare("SELECT * FROM user WHERE Correo=?");
+        $sentencia -> execute([$jsonUsuario->Correo]);
+        while($item = $sentencia->fetch(PDO::FETCH_ASSOC)){
+            if(password_verify($jsonUsuario->Contrasena , $item['Contrasena'])){
+                $contador++;
+            }
+        }
+        if($contador>0){
+            echo json_encode([
+                "resultado" => $sentencia,
+            ]);
+        }else{
+            echo json_encode([
+                "ErrorLogin",
+            ]); 
+        }
+        
+    }  
+     
+?>
