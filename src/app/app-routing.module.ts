@@ -43,6 +43,8 @@ import { MostrarJuegoComponent } from './body/mostrar-juego/mostrar-juego.compon
 import { PlataformasComponent } from './Admin/panel/plataformas/plataformas.component';
 import { MapaWebComponent } from './body/mapa-web/mapa-web.component';
 import { SubastasComponent } from './body/subastas/subastas.component';
+import { ProductosComponent } from './body/productos/productos.component';
+import { VigilateGuard } from './vigilate.guard';
 
 
 
@@ -52,39 +54,102 @@ const routes: Routes = [
   { path: "Login" , component: LoginComponent},
   { path: "Carrito" , component: CarritoComponent},
   { path: "About" , component: AboutComponent},
-  { path: "Panel" , component: PanelComponent},
   { path: "Subastas" , component: SubastasComponent},
   { path: "MapaWeb" , component: MapaWebComponent},
-  { path: "Panel/Plataforma" , component: PlataformasComponent},
-  { path: "Panel/Categoria" , component: CategoriaComponent},
-  { path: "Panel/Genero" , component: GeneroComponent},
-  { path: "Panel/User" , component: ListUserComponent},
-  { path: "Panel/User/Agregar" , component: AgregarUserComponent},
-  { path: "Panel/User/Editar/:Id" , component: EditarUserComponent},
-  { path: "Panel/Juego" , component: ListJuegoComponent},
-  { path: "Panel/Juego/Agregar" , component: AgregarJuegoComponent},
-  { path: "Panel/Juego/Editar/:Id" , component: EditarJuegoComponent},
-  { path: "Panel/RelacionJuego" , component: ListaRelacionJuegoComponent},
-  { path: "Panel/RelacionJuego/Agregar" , component: AgregarRelacionJuegoComponent},
-  { path: "Panel/RelacionJuego/Editar/:Id_Juego/:Id_Plataforma" , component: EditarRelacionJuegoComponent},
-  { path: "Panel/Accesorio" , component: ListAccesorioComponent},
-  { path: "Panel/Accesorio/Agregar" , component: AgregarAccesorioComponent},
-  { path: "Panel/Accesorio/Editar/:Id" , component: EditarAccesorioComponent},
-  { path: "Panel/RelacionAccesorio" , component: ListRelacionAccesorioComponent},
-  { path: "Panel/RelacionAccesorio/Agregar" , component: AgregarRelacionAccesorioComponent},
-  { path: "Panel/RelacionAccesorio/Editar/:Id_Accesorio/:Id_Plataforma" , component: EditarRelacionAccesorioComponent},
-  { path: "Panel/Subasta" , component: ListSubastaComponent},
-  { path: "Panel/Subasta/Agregar" , component: AgregarSubastaComponent},
-  { path: "Panel/Subasta/Editar/:Id" , component: EditarSubastaComponent},
-  { path: "Panel/Puja" , component: ListPujaComponent},
-  { path: "Panel/Puja/Agregar" , component: AgregarPujaComponent},
-  { path: "Panel/Puja/Editar/:Id_Subasta/:Id_User" , component: EditarPujaComponent},
-  { path: "Panel/ComprarJuego" , component: ListCompraJuegoComponent},
-  { path: "Panel/ComprarJuego/Agregar" , component: AgregarCompraJuegoComponent},
-  { path: "Panel/ComprarJuego/Editar/:Id_Juego/:Id_User/:Id_Plaforma" , component: EditarCompraJuegoComponent},
-  { path: "Panel/ComprarAccesorio" , component: ListCompraAccesorioComponent},
-  { path: "Panel/ComprarAccesorio/Agregar" , component: AgregarCompraAccesorioComponent},
-  { path: "Panel/ComprarAccesorio/Editar/:Id_Accesorios/:Id_User/:Id_Plaforma" , component: EditarCompraAccesorioComponent},
+  { path: "Panel" ,component: PanelComponent,
+     canActivate:[VigilateGuard]
+  },
+  { path: "Panel/Plataforma" , component: PlataformasComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/Categoria" , component: CategoriaComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/Genero" , component: GeneroComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/User" , component: ListUserComponent,
+    canActivate:[VigilateGuard]
+  },  
+  { path: "Panel/User/Agregar" , component: AgregarUserComponent,
+    canActivate:[VigilateGuard]
+  },  
+  { path: "Panel/User/Editar/:Id" , component: EditarUserComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/Juego" , component: ListJuegoComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/Juego/Agregar" , component: AgregarJuegoComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/Juego/Editar/:Id" , component: EditarJuegoComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/RelacionJuego" , component: ListaRelacionJuegoComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/RelacionJuego/Agregar" , component: AgregarRelacionJuegoComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/RelacionJuego/Editar/:Id_Juego/:Id_Plataforma" , component: EditarRelacionJuegoComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/Accesorio" , component: ListAccesorioComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/Accesorio/Agregar" , component: AgregarAccesorioComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/Accesorio/Editar/:Id" , component: EditarAccesorioComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/RelacionAccesorio" , component: ListRelacionAccesorioComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/RelacionAccesorio/Agregar" , component: AgregarRelacionAccesorioComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/RelacionAccesorio/Editar/:Id_Accesorio/:Id_Plataforma" , component: EditarRelacionAccesorioComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/Subasta" , component: ListSubastaComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/Subasta/Agregar" , component: AgregarSubastaComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/Subasta/Editar/:Id" , component: EditarSubastaComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/Puja" , component: ListPujaComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/Puja/Agregar" , component: AgregarPujaComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/Puja/Editar/:Id_Subasta/:Id_User" , component: EditarPujaComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/ComprarJuego" , component: ListCompraJuegoComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/ComprarJuego/Agregar" , component: AgregarCompraJuegoComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/ComprarJuego/Editar/:Id_Juego/:Id_User/:Id_Plaforma" , component: EditarCompraJuegoComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/ComprarAccesorio" , component: ListCompraAccesorioComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/ComprarAccesorio/Agregar" , component: AgregarCompraAccesorioComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Panel/ComprarAccesorio/Editar/:Id_Accesorios/:Id_User/:Id_Plaforma" , component: EditarCompraAccesorioComponent,
+    canActivate:[VigilateGuard]
+  },
+  { path: "Productos" , component: ProductosComponent},  
   { path: "ListadoJuegos" , component: ListarJuegosComponent},
   { path: "ListadoAccesorios" , component: ListarAccesoriosComponent},
   { path: "ListadoJuegos/Juego/:Id_Juego/:Id_Plataforma" , component: MostrarJuegoComponent},

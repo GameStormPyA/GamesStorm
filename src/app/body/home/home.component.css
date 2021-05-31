@@ -91,7 +91,6 @@ h1 {
 
 .img{
 	width:100%;
-	border: 2px solid rgb(80, 80, 80);
 	height: 100%;
   }
   .BotonFiltoSelect{
@@ -106,3 +105,21 @@ h1 {
 	font-size: 30px;
   }
 
+  #Migas {
+	color: rgb(255, 255, 255);
+	text-decoration:none;
+  }
+
+
+  /*juegos texto*/
+  
+.glitch {
+	font-size: 1.5rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	position: relative;
+   
+	text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+	  -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+	  0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }

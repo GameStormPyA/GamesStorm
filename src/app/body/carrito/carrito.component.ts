@@ -7,6 +7,7 @@ import { MatSnackBar,MatSnackBarHorizontalPosition,MatSnackBarVerticalPosition }
 import { AdminService } from '../../servicios/admin.service';
 import { CompraAccesorio } from '../../AdminClass/compra-accesorio';
 import { CompraJuego } from '../../AdminClass/compra-juego';
+import { CookieService } from 'ngx-cookie-service';
 
 declare var paypal;
 
@@ -36,11 +37,14 @@ export class CarritoComponent implements OnInit {
 
   constructor(private gestionCarritoService:GestionCarritoService,
               private adminService:AdminService, 
+              private cookieService:CookieService,
               private snackBar: MatSnackBar) { }
             
   ngOnInit(): void {        
     this.gestionCarritoService.PrecioTotal.subscribe(valor => this.PrecioTotal = valor);
     this.gestionCarritoService.numProductosCarrito.subscribe(valor => this.numProductosCarrito = valor);
+    
+
     this.Id = localStorage.getItem('Id');
     this.admin = localStorage.getItem('admi');
     this.getCarrito();

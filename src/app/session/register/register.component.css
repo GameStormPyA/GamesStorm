@@ -16,3 +16,11 @@ input[type=number] {
     -moz-appearance:textfield;
 
 }
+
+#Migas:hover{
+    color: rgb(247, 105, 204); 
+  }
+  #Migas {
+    color: rgb(255, 255, 255);
+    text-decoration:none;
+  }

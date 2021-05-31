@@ -4,9 +4,12 @@
 
 export const environment = {
   production: false,
-  baseUrl:"https://gamestormpetyo.000webhostapp.com",
+  //baseUrl:"https://gamestormpetyo.000webhostapp.com",
+  //baseUrl:"http://localhost/server/",
+  //baseUrl:"https://gamesstorms.000webhostapp.com/php",
+  baseUrl:"https://gamestorm.store/php",
+  
 };
-
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

@@ -1,3 +1,7 @@
+<div  class="bg-secondary ">
+    <a class="ml-2" id="Migas" [routerLink]="['/Home']"><b>Inicio /</b></a><a class="ml-2" id="Migas" [routerLink]="['/Productos']"><b>Tienda /</b></a><a class="text-white" style='text-decoration:none'> Juegos</a>
+</div>
+
 <div class="row ">
     <div class="col-lg-2 "> 
         <div class="DivGenero col-lg-12 col-md-3 d-none d-sm-none  d-md-block  mat-elevation-z8 mt-2" >
@@ -81,6 +85,7 @@
                 </span>
              </span>
             </div>
+            
             <div class="col-6 d-flex justify-content-end">
                 <mat-form-field class="example-full-width">
                     <mat-label>Buscar Juego</mat-label>
@@ -98,7 +103,7 @@
                         <mat-card-subtitle>{{ Juego.Nombre_Plataforma }}</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>
-                        <img src="{{Juego.Portada}}" alt="Foto juego {{Juego.Nombre_Juego}} de {{ Juego.Nombre_Plataforma }} img: {{Juego.Portada}}" class="img" [routerLink]="['/ListadoJuegos/Juego/',Juego.Id_Juego,Juego.Id_Plataforma]">
+                        <img src="https://gamestorm.store/{{Juego.Portada}}" alt="Foto juego {{Juego.Nombre_Juego}} de {{ Juego.Nombre_Plataforma }} img: {{Juego.Portada}}" class="img" [routerLink]="['/ListadoJuegos/Juego/',Juego.Id_Juego,Juego.Id_Plataforma]">
                     </mat-card-content>
                     <mat-card-actions>
                         <div class="row">

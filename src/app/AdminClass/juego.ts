@@ -8,6 +8,7 @@ export class Juego {
         public Video: string,
         public EdadMin: number, 
         public Id_Genero: number ,
-        public Nombre_Genero: string 
+        public Nombre_Genero: string,
+        public Base64TextoPortada: string
     ){}
 }

@@ -103,7 +103,7 @@ export class SubastasComponent implements OnInit {
   }
   
   obtenerSubasta(){
-    return this.homeService.getSubastaActivasUno().subscribe((listaSubastas: Subasta[]) => this.listaSubastas = listaSubastas);
+    return this.homeService.getSubastaActivasAll().subscribe((listaSubastas: Subasta[]) => this.listaSubastas = listaSubastas);
   }
 
   pujar(Subasta) {

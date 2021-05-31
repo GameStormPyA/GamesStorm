@@ -91,6 +91,8 @@ import { CarritoComponent } from './body/carrito/carrito.component';
 import { PlataformasComponent } from './Admin/panel/plataformas/plataformas.component';
 import { MapaWebComponent } from './body/mapa-web/mapa-web.component';
 import { SubastasComponent } from './body/subastas/subastas.component';
+import { ProductosComponent } from './body/productos/productos.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -146,6 +148,7 @@ import { SubastasComponent } from './body/subastas/subastas.component';
     PlataformasComponent,
     MapaWebComponent,
     SubastasComponent,
+    ProductosComponent,
   ],
   imports: [
     BrowserModule,
@@ -179,6 +182,7 @@ import { SubastasComponent } from './body/subastas/subastas.component';
   ],
   providers: [
     HomeService,
+    CookieService,
     AdminService,
     ProductosService,
     GestionCarritoService,

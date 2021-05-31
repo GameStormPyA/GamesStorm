@@ -15,6 +15,10 @@ export class HomeService {
     return this.http.get(`${this.baseUrl}/getSubastaHome.php`);
   }
 
+  getSubastaActivasAll(){
+    return this.http.get(`${this.baseUrl}/getSubastasAll.php`);
+  }
+
   addPuja(puja: Puja){
     return this.http.post(`${this.baseUrl}/AgregarPujaHome.php`, puja);
   }

@@ -42,3 +42,11 @@ input[type=number] {
     height: 100%;
     text-align: left;
 }
+
+#Migas:hover{
+    color: rgb(247, 105, 204); 
+  }
+  #Migas {
+    color: rgb(255, 255, 255);
+    text-decoration:none;
+  }

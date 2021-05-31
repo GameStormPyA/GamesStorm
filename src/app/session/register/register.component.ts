@@ -42,7 +42,8 @@ export class RegisterComponent implements OnInit {
   RegistroModel = new Usuario(undefined,'','','','',undefined,undefined);
 
   onSubmit() {
-    this.sessionService.Registrar(this.RegistroModel).subscribe((datos) => {      
+    this.sessionService.Registrar(this.RegistroModel).subscribe((datos) => { 
+          
       if(datos=="Existe"){
         this.snackBar.open('Correo electronico ya registrado', undefined, {
           duration: 2000,

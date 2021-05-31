@@ -1,3 +1,7 @@
+<div  class="bg-secondary ">
+    <a class="ml-2" id="Migas" style='text-decoration:none'>Inicio</a>
+</div>
+
 <mat-carousel
   timings="250ms ease-in"
   [autoplay]="true"
@@ -52,7 +56,7 @@
                        <b> {{Subasta.Nombre_Juego}} {{ Subasta.Nombre_Plataforma }}</b>
                     </h3>       
             </mat-card-content>
-            <img mat-card-image src="{{Subasta.Portada}}" alt="Fotografia de  {{Subasta.Nombre_Juego}}"> 
+            <img mat-card-image src="https://gamestorm.store/{{Subasta.Portada}}" alt="Fotografia de  {{Subasta.Nombre_Juego}}"> 
             <div class="Tiempo col-12 d-flex justify-content-center" >
                 <p class="unit">
                     <strong>{{TiempoRestante.days}}</strong>
@@ -112,7 +116,9 @@
                     </h2>
                 </div>
             </div>
-            
+            <div>
+                <p class="glitch">Videojuegos</p>
+            </div>
             <div class="row" >
                 <div class="col-lg-3 col-md-6 mb-1"  *ngFor="let Juego of datos | slice:0:4; let i=index ">
                     <mat-card class="border "  >
@@ -121,7 +127,7 @@
                             <mat-card-subtitle>{{ Juego.Nombre_Plataforma }}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
-                            <img src="{{Juego.Portada}}" alt="Foto juego {{Juego.Nombre_Juego}} de {{ Juego.Nombre_Plataforma }}" class="img" [routerLink]="['/ListadoJuegos/Juego/',Juego.Id_Juego,Juego.Id_Plataforma]">
+                            <img src="https://gamestorm.store/{{Juego.Portada}}" alt="Foto juego {{Juego.Nombre_Juego}} de {{ Juego.Nombre_Plataforma }}" class="img" [routerLink]="['/ListadoJuegos/Juego/',Juego.Id_Juego,Juego.Id_Plataforma]">
                         </mat-card-content>
                         <mat-card-actions>
                             <div class="row">
@@ -138,8 +144,10 @@
                 </div>          
             </div>
         </div>
-
         <div class="col-12 mt-1">
+            <div>
+                <p class="glitch">Accesorios</p>
+            </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 mb-1"  *ngFor="let Accesorio of datosAccesorios | slice:0:4; let i=index ">
                     <mat-card class="border "  >
@@ -148,7 +156,7 @@
                             <mat-card-subtitle>{{ Accesorio.Nombre_Plataforma }}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
-                            <img src="{{Accesorio.Portada}}" alt="Foto Accesorio {{Accesorio.Nombre_Accesorios}} de {{ Accesorio.Nombre_Plataforma }}" class="img" [routerLink]="['/ListadoAccesorios/Accesorio/',Accesorio.Id_Accesorios,Accesorio.Id_Plataforma]">
+                            <img src="https://gamestorm.store/{{Accesorio.Portada}}" alt="Foto Accesorio {{Accesorio.Nombre_Accesorios}} de {{ Accesorio.Nombre_Plataforma }}" class="img" [routerLink]="['/ListadoAccesorios/Accesorio/',Accesorio.Id_Accesorios,Accesorio.Id_Plataforma]">
                         </mat-card-content>
                         <mat-card-actions>
                             <div class="row">

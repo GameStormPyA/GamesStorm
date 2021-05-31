@@ -24,7 +24,6 @@ LoginJuego = this.formBuild.group({
   Lanzamiento: ['',[Validators.required]],
   Video: ['',[Validators.required]],
   EdadMin: ['',[Validators.required,Validators.min(0),Validators.max(21)]],
-  Portada: ['',[Validators.required]],
   Id_Genero: ['',[Validators.required]]
  });
 
@@ -37,10 +36,25 @@ LoginJuego = this.formBuild.group({
    this.obtenerGenero();
  }
  
- JuegoModel = new Juego(undefined,"","","",undefined,"",undefined,undefined,'');
+ JuegoModel = new Juego(0,"","","",undefined,"",undefined,undefined,'','');
+
+ _handleReaderLoader(readerEvent){
+    var binaryString = readerEvent.target.result;
+    this.JuegoModel.Base64TextoPortada=btoa(binaryString);
+ }
+selecionarArchivo(event){
+  var files= event.target.files;
+  var file= files[0];
+  this.JuegoModel.Portada=file.name;
+  if(file && files){
+    var reader = new FileReader();
+    reader.onload = this._handleReaderLoader.bind(this);
+    reader.readAsBinaryString(file);
+  }
+}
 
  onSubmit() {
-  console.log(this.JuegoModel);
+  
   
   this.adminService.addJuego(this.JuegoModel).subscribe((datos) => {      
     if(datos=="Existe"){

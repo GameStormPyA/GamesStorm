@@ -1,3 +1,7 @@
+<div  class="bg-secondary ">
+    <a class="ml-2" id="Migas" [routerLink]="['/Home']"><b>Inicio /</b></a><a class="ml-2" id="Migas" [routerLink]="['/Productos']"><b>Tienda /</b></a><a class="text-white" style='text-decoration:none'> Accesorios</a>
+</div>
+
 <div class="row ">
     <div class="col-lg-2 "> 
         <div class="DivCategoria col-lg-12 col-md-3 d-none d-sm-none  d-md-block  mat-elevation-z8 mt-2" >
@@ -98,7 +102,7 @@
                         <mat-card-subtitle>{{ Accesorio.Nombre_Plataforma }}</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content [routerLink]="['/ListadoAccesorios/Accesorio/',Accesorio.Id_Accesorios,Accesorio.Id_Plataforma]">
-                        <img src="{{Accesorio.Portada}}" alt="Foto juego {{Accesorio.Nombre_Accesorios}} de {{ Accesorio.Nombre_Plataforma }}" class="img" >
+                        <img src="https://gamestorm.store/{{Accesorio.Portada}}" alt="Foto juego {{Accesorio.Nombre_Accesorios}} de {{ Accesorio.Nombre_Plataforma }}" class="img" >
                     </mat-card-content>
                     <mat-card-actions>
                         <div class="row">

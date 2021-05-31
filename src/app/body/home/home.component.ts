@@ -16,6 +16,8 @@ import { JuegosList } from '../../Class/juegos-list';
 import { AccesoriosList } from '../../Class/accesorios-list';
 import { HeadComponent} from '../../head/head.component';
 
+import { CookieService } from 'ngx-cookie-service';
+
 
 interface Tiempo{
   hours: number,
@@ -62,6 +64,7 @@ export class HomeComponent implements OnInit {
               private snackBar: MatSnackBar,
               private router: Router,
               private formBuild :FormBuilder,
+              private cookieService:CookieService,
               private gestionCarritoService:GestionCarritoService,
               private productosService:ProductosService) { }
 
@@ -72,6 +75,8 @@ export class HomeComponent implements OnInit {
             {'image': '../../../assets/image/Carrusel/cyberpunk.jpg','Text':'Cyberpunk'}];
   
   ngOnInit(): void {
+   this.cookieService.get('token_access');
+    
     this.Id = localStorage.getItem('Id');
     this.admin = localStorage.getItem('admi');
 

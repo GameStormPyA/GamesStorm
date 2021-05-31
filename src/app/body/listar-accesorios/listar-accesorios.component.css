@@ -21,7 +21,6 @@ li{
 
 .img{
   width:100%;
-  border: 2px solid rgb(80, 80, 80);
   height: 100%;
 }
 .BotonFiltoSelect{
@@ -30,4 +29,11 @@ li{
 }
 .icono{
   font-size: 18px;
+}
+#Migas:hover{
+  color: rgb(247, 105, 204); 
+}
+#Migas {
+  color: rgb(255, 255, 255);
+  text-decoration:none;
 }

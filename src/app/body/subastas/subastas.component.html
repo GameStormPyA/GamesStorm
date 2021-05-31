@@ -1,3 +1,7 @@
+<div  class="bg-secondary ">
+    <a class="ml-2" id="Migas" [routerLink]="['/Home']"><b>Inicio /</b></a><a class="ml-2" id="Migas" [routerLink]="['/Productos']"><b>Tienda /</b></a><a class="text-white" style='text-decoration:none'> Subasta</a>
+</div>
+
 <div class="mt-2 d-flex justify-content-center">
         <h1><b>Subastas</b></h1>
 </div>
@@ -20,7 +24,7 @@
                     <b> {{Subasta.Nombre_Juego}} {{ Subasta.Nombre_Plataforma }}</b>
                     </h3>       
             </mat-card-content>
-            <img mat-card-image src="{{Subasta.Portada}}" alt="Fotografia de  {{Subasta.Nombre_Juego}}"> 
+            <img mat-card-image src="https://gamestorm.store/{{Subasta.Portada}}" alt="Fotografia de  {{Subasta.Nombre_Juego}}"> 
             <div class="Tiempo col-12 d-flex justify-content-center" >
                 <p class="unit">
                     <strong>{{TiempoRestante.days}}</strong>
